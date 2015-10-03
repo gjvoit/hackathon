@@ -4,8 +4,9 @@
 
 	<test name="Ubuntu+ALL">
 		<classes>
-			<class name="hackathonGroup.hackathonID.tests.NexiumContributing" />
 			<class name="hackathonGroup.hackathonID.tests.Synthoid" />
+			<class name="hackathonGroup.hackathonID.tests.NexiumContributing" />
+			
 		</classes>
 	</test>
 
