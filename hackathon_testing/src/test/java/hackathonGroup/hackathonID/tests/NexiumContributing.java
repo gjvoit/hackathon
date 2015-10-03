@@ -39,37 +39,15 @@ public class NexiumContributing {
 	Thread.sleep(2000);
 	
 	driver.get(baseUrl + "/");
+	Reporter.log("- Started Nexium on " + browserInfo.getBrowserShorthand() + "<br>");
 	driver.findElement(By.id("searchValue")).clear();
 	driver.findElement(By.id("searchValue")).sendKeys("Nexium");
+	Reporter.log("- Searched for Nexium <br>");
+	Thread.sleep(1000);
 	driver.findElement(By.xpath("//button[@type='button']")).click();
-	// ERROR: Caught exception [unknown command [assertTrue]]
 	driver.findElement(By.xpath("//div[@id='events-reports']/div/div[3]/div/button")).click();
 	driver.findElement(By.id("toolbox-close")).click();
-	// ERROR: Caught exception [unknown command [assertTrue]]
-	// ERROR: Caught exception [ERROR: Unsupported command [selectWindow | null | ]]
-	driver.findElement(By.linkText("YES")).click();
-	driver.findElement(By.linkText("NO")).click();
-	driver.findElement(By.linkText("YES")).click();
-	driver.findElement(By.linkText("NO")).click();
-	driver.findElement(By.linkText("YES")).click();
-	driver.findElement(By.linkText("NO")).click();
-	driver.findElement(By.linkText("YES")).click();
-	driver.findElement(By.linkText("NO")).click();
-	driver.findElement(By.linkText("YES")).click();
-	driver.findElement(By.linkText("NO")).click();
-	driver.findElement(By.linkText("YES")).click();
-	driver.findElement(By.linkText("YES")).click();
-	driver.findElement(By.linkText("NO")).click();
-	driver.findElement(By.linkText("YES")).click();
-	driver.findElement(By.linkText("NO")).click();
-	driver.findElement(By.linkText("YES")).click();
-	driver.findElement(By.linkText("NO")).click();
-	driver.findElement(By.linkText("YES")).click();
-	// ERROR: Caught exception [unknown command [assertTrue]]
-	driver.findElement(By.id("firstName")).clear();
-	driver.findElement(By.id("firstName")).sendKeys("Nathan Waters");
-	driver.findElement(By.xpath("//button[@type='submit']")).click();
-	// ERROR: Caught exception [unknown command [assertTrue]]
+	Reporter.log("- [SUCCESS] Completed Nexium on " + browserInfo.getBrowserShorthand() + "<br>");
   }
   
   @AfterMethod

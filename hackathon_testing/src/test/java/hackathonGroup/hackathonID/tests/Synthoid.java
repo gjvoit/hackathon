@@ -32,7 +32,7 @@ public class Synthoid {
   }
   
   @Test(dataProvider = "dp")
-  public void NexiumContributing(BrowserInfo browserInfo) throws Exception {
+  public void Synthoid(BrowserInfo browserInfo) throws Exception {
 	SelectDriver selector = new SelectDriver();
 	driver = selector.getDriver(browserInfo.getPlatformName(), browserInfo.getBrowserName(), browserInfo.getVersionNumber());
 	baseUrl = browserInfo.getBaseURL();
