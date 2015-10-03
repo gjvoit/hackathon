@@ -28,7 +28,7 @@ public class Synthoid {
   public Object[][] dp() {
       return new Object[][] { 
 //    	  { new BrowserInfo("Chrome", "ANY") }, 
-    	  { new BrowserInfo("Firefox", "ANY") }};
+    	  { new BrowserInfo("phantomjs", "ANY") }};
   }
   
   @Test(dataProvider = "dp")
