@@ -27,7 +27,7 @@ public class BrowserInfo {
 		this.versionNumber = versionNumber;
 	}
 	public String getBaseURL() {
-		return "https://atlasdau-upg-stage1.usae.bah.com/";
+		return "http://54.173.118.20:9000/";
 	}
 	
 	public String getBrowserShorthand(){
