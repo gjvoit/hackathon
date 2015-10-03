@@ -25,7 +25,7 @@ public class Activate_Deactivate_65_test {
   @DataProvider
   public Object[][] dp() {
       return new Object[][] { 
-    	  { new BrowserInfo("Chrome", "ANY") }, 
+//    	  { new BrowserInfo("Chrome", "ANY") }, 
     	  { new BrowserInfo("Firefox", "ANY") }};
   }
   

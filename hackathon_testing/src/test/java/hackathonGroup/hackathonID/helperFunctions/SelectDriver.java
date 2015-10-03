@@ -58,7 +58,8 @@ public class SelectDriver {
 //		log.info("You're using version: " + version);
 		
 		//Pointing to automated Selenium grid on the test server
-		driver = new RemoteWebDriver(new URL("http://10.200.64.70:4444/wd/hub"), caps);
+
+		driver = new RemoteWebDriver(new URL("http://54.152.134.184:4444/wd/hub"), caps);
 		
 		return driver;
 	}
