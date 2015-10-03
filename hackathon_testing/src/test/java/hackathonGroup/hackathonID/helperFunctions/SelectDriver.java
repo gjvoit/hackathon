@@ -54,8 +54,8 @@ public class SelectDriver {
 		}
 		caps.setVersion(version);
 		caps.setCapability("binary", "/usr/bin/firefox");
-//		driver = new WebDriver(new URL("http://54.152.134.184:4444/wd/hub"), caps);
-		driver = new FirefoxDriver();
+		driver = new RemoteWebDriver(new URL("http://54.152.134.184:4444/wd/hub"), caps);
+//		driver = new FirefoxDriver();
 		
 		return driver;
 	}
