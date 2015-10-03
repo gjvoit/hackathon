@@ -1,0 +1,63 @@
+package atlasGroup.atlasID.pages;
+
+import java.util.logging.Logger;
+
+import org.junit.Assert;
+import org.openqa.selenium.*;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.*;
+
+import atlasGroup.atlasID.helperFunctions.SelectDriver;
+import atlasGroup.atlasID.pages.Login_0;
+
+public class NewMiniSurvey_45 {
+  private WebDriver driver;
+  private String baseUrl;
+  private boolean acceptNextAlert = true;
+  private StringBuffer verificationErrors = new StringBuffer();
+  private final static Logger log = Logger.getLogger(NewMiniSurvey_45.class.getName());
+
+  @Parameters({ "platform","browser","version", "url" })
+  @BeforeTest(alwaysRun=true)
+  public void setUp(String platform, String browser, String version, String url) throws Exception {
+	  SelectDriver selector = new SelectDriver();
+	  driver = selector.getDriver(platform, browser, version);
+	  baseUrl = url;
+  }
+
+  @Test(description="Add New Mini Survery")
+  public void newMiniSurvey_45() throws Exception {
+	Login_0 login = new Login_0();
+	login.testLogin0(driver);
+	Thread.sleep(2000);    
+    driver.get(baseUrl + "/html/desktop/SystemAdministratorDesktop.jsp");
+    driver.get(baseUrl + "/html/survey/AddMiniSurvey.jsp");
+    
+    log.info("Started NewMiniSurvey_45");
+    
+    driver.findElement(By.id("survey question")).clear();
+    driver.findElement(By.id("survey question")).sendKeys("Test Question");
+    driver.findElement(By.id("first option")).clear();
+    driver.findElement(By.id("first option")).sendKeys("How are you enjoying this test");
+    driver.findElement(By.id("survey question")).clear();
+    driver.findElement(By.id("survey question")).sendKeys("Test Question - how are you enjoying this test?");
+    driver.findElement(By.id("first option")).clear();
+    driver.findElement(By.id("first option")).sendKeys("Well");
+    driver.findElement(By.id("second option")).clear();
+    driver.findElement(By.id("second option")).sendKeys("Fine");
+    driver.findElement(By.id("third option")).clear();
+    driver.findElement(By.id("third option")).sendKeys("Meh");
+    driver.findElement(By.id("fourth option")).clear();
+    driver.findElement(By.id("fourth option")).sendKeys("Not fun");
+    driver.findElement(By.name("sumbit")).click();
+    driver.findElement(By.name("sumbit")).click();
+    // ERROR: Caught exception [Error: unknown strategy [class] for locator [class=message]]
+    driver.findElement(By.name("not")).click();
+  }
+
+  @AfterTest
+  public void tearDown() throws Exception {
+    driver.quit();
+  }
+}

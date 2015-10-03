@@ -1,0 +1,63 @@
+package atlasGroup.atlasID.tests;
+
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.testng.Reporter;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import atlasGroup.atlasID.helperFunctions.BrowserInfo;
+import atlasGroup.atlasID.helperFunctions.SelectDriver;
+import atlasGroup.atlasID.pages.Login_0;
+
+public class AddPredecessor_27_test {
+  private WebDriver driver;
+  private String baseUrl;
+
+  @DataProvider
+  public Object[][] dp() {
+      return new Object[][] { 
+    	  { new BrowserInfo("Chrome", "ANY") }, 
+    	  { new BrowserInfo("Firefox", "ANY") },
+    	  { new BrowserInfo("internet explorer", "9") },
+    	  { new BrowserInfo("internet explorer", "10") },
+    	  { new BrowserInfo("internet explorer", "11") }};
+  }
+  
+  @Test(dataProvider = "dp")
+  public void AddPredecessor_27(BrowserInfo browserInfo) throws Exception {
+	SelectDriver selector = new SelectDriver();
+	driver = selector.getDriver(browserInfo.getPlatformName(), browserInfo.getBrowserName(), browserInfo.getVersionNumber());
+	baseUrl = browserInfo.getBaseURL();
+	Login_0 login = new Login_0();
+	login.testLogin0(driver);
+	Thread.sleep(2000);  
+	Reporter.log("Started AddPredecessor_27 on " + browserInfo.getBrowserShorthand() + "<br>");
+	
+    driver.get(baseUrl + "html/desktop/SystemAdministratorDesktop.jsp");
+    driver.get(baseUrl + "html/utilities/admin/reference/PredecessorCourseAssociation.jsp");
+    
+    driver.findElement(By.id("currentCourseID")).sendKeys("ACQ402 Executive Management Course");
+	Reporter.log("- Selected course ACQ402 <br>");
+	
+    driver.findElement(By.id("predCourseID")).sendKeys("ACQ402 Executive Management Course");
+	Reporter.log("- Selected ACQ402 as a predecessor <br>");
+
+    driver.findElement(By.name("Next")).click();
+	Reporter.log("- Selected Associate Course <br>");
+	
+    Assert.assertTrue(driver.findElement(By.xpath("html/body/form/table/tbody/tr[3]/td/center/span")).getText().contains("Predecessor Course Successfully Added"));
+	Reporter.log("- Predecessor course successfully added <br>");
+	
+    driver.findElement(By.linkText("Disassociate")).click();
+    Reporter.log("- Clicked Disassociate link <br>");
+    
+    Assert.assertTrue(driver.findElement(By.xpath("html/body/form/table/tbody/tr[3]/td/center/span")).getText().contains("Predecessor Course Successfully Deleted"));
+	Reporter.log("- Predecessor course successfully deleted <br>");
+	
+    Reporter.log("- [SUCCESS] Completed AddPredecessor_27!");
+    driver.quit();
+  }
+
+}

@@ -1,0 +1,74 @@
+package atlasGroup.atlasID.tests;
+
+import java.util.logging.Logger;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import atlasGroup.atlasID.helperFunctions.BrowserInfo;
+import atlasGroup.atlasID.helperFunctions.SelectDriver;
+import atlasGroup.atlasID.pages.Login_0;
+import atlasGroup.atlasID.pages.TestManagement_62;
+
+import java.util.List;
+import org.junit.Assert;
+import org.openqa.selenium.*;
+
+public class AtlasProperties_50_test {
+  private WebDriver driver;
+  private String baseUrl;
+  private final static Logger log = Logger.getLogger(TestManagement_62.class.getName());
+
+  
+  @DataProvider
+  public Object[][] dp() {
+      return new Object[][] { 
+    	  { new BrowserInfo("Chrome", "ANY") }, 
+    	  { new BrowserInfo("Firefox", "ANY") },
+    	  { new BrowserInfo("internet explorer", "9") },
+    	  { new BrowserInfo("internet explorer", "10") },
+    	  { new BrowserInfo("internet explorer", "11") }};
+  }
+  
+  @Test(dataProvider = "dp")
+  public void AtlasProperties_50(BrowserInfo browserInfo) throws Exception {
+	SelectDriver selector = new SelectDriver();
+	driver = selector.getDriver(browserInfo.getPlatformName(), browserInfo.getBrowserName(), browserInfo.getVersionNumber());
+	baseUrl = browserInfo.getBaseURL();
+	Login_0 login = new Login_0();
+	login.testLogin0(driver);
+	Thread.sleep(2000);  
+	log.info("Started AtlasProperties_50");
+    driver.get(baseUrl + "html/desktop/SystemAdministratorDesktop.jsp");
+    driver.get(baseUrl + "html/utilities/admin/Properties.jsp");
+    // Perform the click operation that opens new window
+//    String winHandleBefore = driver.getWindowHandle();
+    log.info("Started AtlasProperties_50 -- 1");
+//    driver.findElement(By.xpath("/html/body/div[2]/div[5]")).click();
+//    
+//    try{
+//    	driver.findElement(By.xpath("/html/body/div[17]/div/table/tbody/tr[1]/td/div/div[2]/span/ul/ul[1]/li[1]/a"));
+//    } catch (Exception e){
+//    	log.info("Started AtlasProperties_50 -- 1.5");
+//    	driver.findElement(By.xpath("/html/body/div[17]/table/tbody/tr[1]/td/div/div[2]/span/ul/ul[1]/li[1]/a")).click();
+//    }
+//	log.info("Started AtlasProperties_50 -- 2");
+//	// Switch to new window opened
+//    for(String winHandle : driver.getWindowHandles()){
+//    	driver.switchTo().window(winHandle);
+//	}
+    // ERROR: Caught exception [ERROR: Unsupported command [selectWindow | null | ]]
+    try{
+    	List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'Application Property Id')]"));
+	    Assert.assertTrue("Application Property Id", list.size() > 0);
+    } catch (Exception e){
+    	log.info("Started AtlasProperties_50 -- 1.5");
+    	Assert.assertTrue(driver.findElement(By.xpath("/html/body/div[3]/table/tbody/tr[1]/th[1]")).getText().contains("Application Property Id"));
+    }
+    log.info("completed AtlasProperties_50!");
+    driver.quit();
+  }
+
+}

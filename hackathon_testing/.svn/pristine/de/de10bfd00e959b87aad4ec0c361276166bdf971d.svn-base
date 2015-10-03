@@ -1,0 +1,53 @@
+package atlasGroup.atlasID.tests;
+
+import java.util.logging.Logger;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import atlasGroup.atlasID.helperFunctions.BrowserInfo;
+import atlasGroup.atlasID.helperFunctions.SelectDriver;
+import atlasGroup.atlasID.pages.Login_0;
+import atlasGroup.atlasID.pages.TestManagement_62;
+
+public class AddEditPrerequisite_26_test {
+  private WebDriver driver;
+  private String baseUrl;
+  private final static Logger log = Logger.getLogger(TestManagement_62.class.getName());
+
+  @DataProvider
+  public Object[][] dp() {
+      return new Object[][] { 
+    	  { new BrowserInfo("Chrome", "ANY") }, 
+    	  { new BrowserInfo("Firefox", "ANY") },
+    	  { new BrowserInfo("internet explorer", "9") },
+    	  { new BrowserInfo("internet explorer", "10") },
+    	  { new BrowserInfo("internet explorer", "11") }};
+  }
+  
+  @Test(dataProvider = "dp")
+  public void AddEditPrerequisite_26(BrowserInfo browserInfo) throws Exception {
+	SelectDriver selector = new SelectDriver();
+	driver = selector.getDriver(browserInfo.getPlatformName(), browserInfo.getBrowserName(), browserInfo.getVersionNumber());
+	baseUrl = browserInfo.getBaseURL();
+	Login_0 login = new Login_0();
+	login.testLogin0(driver);
+	Thread.sleep(2000);
+	log.info("Started activate_deactivate_65");
+    driver.get(baseUrl + "html/desktop/SystemAdministratorDesktop.jsp");
+    driver.get(baseUrl + "html/desktop/courseAdministration/SelectCourse.jsp?a=ap");    
+    driver.findElement(By.name("key")).sendKeys("ACQ000 clg 004");
+    driver.findElement(By.name("prerequisites")).sendKeys("ACQ000 clg 004");
+    driver.findElement(By.id("add prerequisite")).click();
+    driver.findElement(By.id("add prerequisites to course")).click();
+    driver.findElement(By.id("go back")).click();
+    log.info("Started activate_deactivate_65 -- 1");
+    driver.findElement(By.xpath("/html/body/table[5]/tbody/tr[2]/td/ul/li/a")).click();
+    driver.findElement(By.id("remove prerequisites from course")).click();
+    log.info("Completed activate_deactivate_65");
+    driver.quit();
+  }
+
+}

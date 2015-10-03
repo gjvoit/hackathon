@@ -1,0 +1,54 @@
+package atlasGroup.atlasID.pages;
+
+import java.util.List;
+import java.util.logging.Logger;
+
+import org.junit.Assert;
+import org.openqa.selenium.*;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.*;
+
+import atlasGroup.atlasID.pages.Login_0;
+import atlasGroup.atlasID.pages.SelectDriver;
+
+public class ResetServerSession_80 {
+  private WebDriver driver;
+  private String baseUrl;
+  private final static Logger log = Logger.getLogger(TestManagement_62.class.getName());
+
+  @Parameters({ "platform","browser","version", "url" })
+  @BeforeTest(alwaysRun=true)
+  public void setUp(String platform, String browser, String version, String url) throws Exception {
+	  SelectDriver selector = new SelectDriver();
+	  driver = selector.getDriver(platform, browser, version);
+	  baseUrl = url;
+  }
+  
+  @Test(description="ResetServerSession_80")
+  public void testActivate_Deactivate_65() throws Exception {
+	Login_0 login = new Login_0();
+	login.testLogin0(driver);
+	Thread.sleep(2000);  
+	log.info("Started ResetServerSession_80");
+	driver.get(baseUrl + "/html/desktop/SystemAdministratorDesktop.jsp");
+	
+    driver.get(baseUrl + "html/utilities/admin/reference/ResetStaticValues.jsp");
+    log.info("Started ResetServerSession_80 -- 1");
+    Assert.assertEquals("If you select the CONTINUE button you are issuing a request to the application server to reset static objects held in the web server session.", driver.findElement(By.xpath("//*[@id='advanced search']/table/tbody/tr[2]/td/table/tbody/tr/td")).getText());
+    log.info("Started ResetServerSession_80 -- 2");
+    Thread.sleep(2000);
+    // hit continue
+    driver.findElement(By.xpath(".//*[@id='advanced search']/table/tbody/tr[3]/td/input[2]")).click();
+    Thread.sleep(2000);
+    Assert.assertTrue(driver.findElement(By.xpath("/html/body/form/table/tbody/tr[2]/td/table/tbody/tr/td")).getText().contains("Session values have been refreshed!"));
+    log.info("completed ResetServerSession_80!");
+    
+  }
+
+  @AfterTest
+  public void tearDown() throws Exception {
+    driver.quit();
+  }
+
+}

@@ -1,0 +1,71 @@
+package atlasGroup.atlasID.tests;
+
+import java.util.logging.Logger;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import atlasGroup.atlasID.helperFunctions.BrowserInfo;
+import atlasGroup.atlasID.helperFunctions.SelectDriver;
+import atlasGroup.atlasID.pages.Login_0;
+import atlasGroup.atlasID.pages.TestManagement_62;
+
+public class Activate_Deactivate_65_test {
+  private WebDriver driver;
+  private String baseUrl;
+  private final static Logger log = Logger.getLogger(TestManagement_62.class.getName());
+
+  
+  @DataProvider
+  public Object[][] dp() {
+      return new Object[][] { 
+    	  { new BrowserInfo("Chrome", "ANY") }, 
+    	  { new BrowserInfo("Firefox", "ANY") },
+    	  { new BrowserInfo("internet explorer", "9") },
+    	  { new BrowserInfo("internet explorer", "10") },
+    	  { new BrowserInfo("internet explorer", "11") }};
+  }
+  
+  @Test(dataProvider = "dp")
+  public void Activate_Deactivate_65(BrowserInfo browserInfo) throws Exception {
+	SelectDriver selector = new SelectDriver();
+	driver = selector.getDriver(browserInfo.getPlatformName(), browserInfo.getBrowserName(), browserInfo.getVersionNumber());
+	baseUrl = browserInfo.getBaseURL();
+	Login_0 login = new Login_0();
+	login.testLogin0(driver);
+	Thread.sleep(2000);  
+	log.info("Started Activate_Deactivate_65");
+    driver.get(baseUrl + "html/desktop/SystemAdministratorDesktop.jsp");
+    driver.get(baseUrl + "html/user/ActivateDeactivateUser.jsp");
+    
+    log.info("Activate_Deactivate_65 -- 1");
+    driver.findElement(By.id("firstname")).clear();
+    driver.findElement(By.id("firstname")).sendKeys("Booz");
+    driver.findElement(By.id("lastname")).clear();
+    driver.findElement(By.id("lastname")).sendKeys("Allen");
+    driver.findElement(By.id("username")).clear();
+    log.info("Activate_Deactivate_65 -- 2");
+    driver.findElement(By.id("username")).sendKeys("temp_dau_id4");
+    driver.findElement(By.name("Submit")).click();
+    
+    driver.findElement(By.linkText("[Deactivate]")).click();
+    
+    log.info("Activate_Deactivate_65 -- 3");
+    driver.findElement(By.xpath("(//input[@name='Submit'])[2]")).click();
+    driver.findElement(By.id("firstname")).clear();
+    driver.findElement(By.id("firstname")).sendKeys("Booz");
+    driver.findElement(By.id("lastname")).clear();
+    driver.findElement(By.id("lastname")).sendKeys("Allen");
+    driver.findElement(By.id("username")).clear();
+    driver.findElement(By.id("username")).sendKeys("temp_dau_id4");
+    log.info("Activate_Deactivate_65 -- 4");
+    driver.findElement(By.name("Submit")).click();
+    driver.findElement(By.linkText("[Reactivate]")).click();
+    log.info("Completed Activate_Deactivate_65");
+    driver.get(baseUrl + "/html/desktop/SystemAdministratorDesktop.jsp");
+    driver.quit();
+  }
+
+}

@@ -1,0 +1,142 @@
+package com.example.tests;
+
+import java.util.regex.Pattern;
+import java.util.concurrent.TimeUnit;
+import org.junit.*;
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+import org.openqa.selenium.*;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class 95TestEngineManagement {
+  private WebDriver driver;
+  private String baseUrl;
+  private boolean acceptNextAlert = true;
+  private StringBuffer verificationErrors = new StringBuffer();
+
+  @Before
+  public void setUp() throws Exception {
+    driver = new FirefoxDriver();
+    baseUrl = "https://atlasdau-upg-stage1.usae.bah.com/";
+    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+  }
+
+  @Test
+  public void test95TestEngineManagement() throws Exception {
+    driver.get(baseUrl + "/html/desktop/SystemAdministratorDesktop.jsp");
+    driver.findElement(By.linkText("Test Engine Management")).click();
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("CLG");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("CON");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("FE");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("CAR");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("ACQ");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("AUD");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("BCF");
+    new Select(driver.findElement(By.name("course_info"))).selectByVisibleText("BCF101 Fundamentals of Cost Analysis");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("CLI");
+    new Select(driver.findElement(By.name("course_info"))).selectByVisibleText("CLI001 International Armaments Cooperation (IAC) Part 1");
+    driver.findElement(By.linkText("CLI001 International Armaments Cooperation (IAC) Part 1 - Version 3 Active")).click();
+    driver.findElement(By.linkText("2--Legislation and Policy Governing International Armaments Cooperation")).click();
+    driver.findElement(By.name("displaytitle")).clear();
+    driver.findElement(By.name("displaytitle")).sendKeys("hellloooooo");
+    driver.findElement(By.name("submit2")).click();
+    driver.findElement(By.linkText("2--Legislation and Policy Governing International Armaments Cooperation")).click();
+    driver.findElement(By.name("displaytitle")).clear();
+    driver.findElement(By.name("displaytitle")).sendKeys("");
+    driver.findElement(By.name("submit2")).click();
+    driver.findElement(By.linkText("2--Legislation and Policy Governing International Armaments Cooperation")).click();
+    driver.findElement(By.name("title")).clear();
+    driver.findElement(By.name("title")).sendKeys("Legislation and Policy Governing International Armaments Cooperation as;dlkfja;lskdjf");
+    driver.findElement(By.name("submit2")).click();
+    driver.findElement(By.linkText("2--Legislation and Policy Governing International Armaments Cooperation as;dlkfja;lskdjf")).click();
+    driver.findElement(By.name("title")).clear();
+    driver.findElement(By.name("title")).sendKeys("Legislation and Policy Governing International Armaments Cooperation");
+    driver.get(baseUrl + "/html/desktop/SystemAdministratorDesktop.jsp");
+    driver.findElement(By.xpath("(.//*[@class='aMenu1'][contains(text(),'Test Management')])")).click();
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("CLB");
+    driver.findElement(By.cssSelector("option[value=\"CLB\"]")).click();
+    new Select(driver.findElement(By.name("course_info"))).selectByVisibleText("CLB001 Business Management Modernization Program");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("MAN");
+    driver.findElement(By.cssSelector("option[value=\"MAN\"]")).click();
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("TST");
+    driver.findElement(By.cssSelector("option[value=\"TST\"]")).click();
+    new Select(driver.findElement(By.name("course_info"))).selectByVisibleText("TST001W Wen's 404");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("TST");
+    new Select(driver.findElement(By.name("course_info"))).selectByVisibleText("TST101ATaaS TST 101 ATaaS");
+    driver.findElement(By.linkText("TST101ATaaS TST 101 ATaaS - Version 2 Active")).click();
+    driver.findElement(By.linkText("Add a TLO")).click();
+    new Select(driver.findElement(By.name("lesson_id"))).selectByVisibleText("Introduction");
+    driver.findElement(By.name("title")).clear();
+    driver.findElement(By.name("title")).sendKeys("Test TLO");
+    driver.findElement(By.name("submit1")).click();
+    driver.findElement(By.linkText("Add a ELO")).click();
+    new Select(driver.findElement(By.name("tlo_id"))).selectByVisibleText("regexp:TLO\\s+1--Test TLO");
+    driver.findElement(By.name("title")).clear();
+    driver.findElement(By.name("title")).sendKeys("Test ELO");
+    // ERROR: Caught exception [Error: Dom locators are not implemented yet!]
+    new Select(driver.findElement(By.name("urladd"))).selectByVisibleText("Introduction");
+    driver.findElement(By.name("submit1")).click();
+    driver.findElement(By.linkText("Add a QUESTION")).click();
+    new Select(driver.findElement(By.name("elo_id"))).selectByVisibleText("regexp:ELO\\s+1--Test ELO");
+    new Select(driver.findElement(By.name("Question_type"))).selectByVisibleText("True - False");
+    driver.findElement(By.name("submit2")).click();
+    driver.findElement(By.name("Question")).clear();
+    driver.findElement(By.name("Question")).sendKeys("You had a good day.");
+    driver.findElement(By.cssSelector("input.orangeDefaultSize")).click();
+    driver.findElement(By.linkText("Test Hierarchy")).click();
+    driver.findElement(By.linkText("You had a good day.")).click();
+    driver.findElement(By.xpath("//input[@value='Delete']")).click();
+    // ERROR: Caught exception [Error: Dom locators are not implemented yet!]
+    driver.findElement(By.linkText("Test Hierarchy")).click();
+    driver.findElement(By.linkText("1--Test ELO")).click();
+    driver.findElement(By.name("submit3")).click();
+    driver.findElement(By.name("submit2")).click();
+    driver.findElement(By.linkText("1--Test TLO")).click();
+    driver.findElement(By.name("submit3")).click();
+    driver.findElement(By.name("submit2")).click();
+    driver.findElement(By.name("submit2")).click();
+  }
+
+  @After
+  public void tearDown() throws Exception {
+    driver.quit();
+    String verificationErrorString = verificationErrors.toString();
+    if (!"".equals(verificationErrorString)) {
+      fail(verificationErrorString);
+    }
+  }
+
+  private boolean isElementPresent(By by) {
+    try {
+      driver.findElement(by);
+      return true;
+    } catch (NoSuchElementException e) {
+      return false;
+    }
+  }
+
+  private boolean isAlertPresent() {
+    try {
+      driver.switchTo().alert();
+      return true;
+    } catch (NoAlertPresentException e) {
+      return false;
+    }
+  }
+
+  private String closeAlertAndGetItsText() {
+    try {
+      Alert alert = driver.switchTo().alert();
+      String alertText = alert.getText();
+      if (acceptNextAlert) {
+        alert.accept();
+      } else {
+        alert.dismiss();
+      }
+      return alertText;
+    } finally {
+      acceptNextAlert = true;
+    }
+  }
+}

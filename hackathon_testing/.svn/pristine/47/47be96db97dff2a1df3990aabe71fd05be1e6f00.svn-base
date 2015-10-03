@@ -1,0 +1,71 @@
+package atlasGroup.atlasID.tests;
+
+import java.util.logging.Logger;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import atlasGroup.atlasID.helperFunctions.BrowserInfo;
+import atlasGroup.atlasID.helperFunctions.SelectDriver;
+import atlasGroup.atlasID.pages.Login_0;
+import atlasGroup.atlasID.pages.TestManagement_62;
+
+import org.junit.Assert;
+import org.openqa.selenium.support.ui.Select;
+
+public class CourseCertificate_21_test {
+  private WebDriver driver;
+  private String baseUrl;
+  private final static Logger log = Logger.getLogger(TestManagement_62.class.getName());
+
+  
+  @DataProvider
+  public Object[][] dp() {
+      return new Object[][] { 
+    	  { new BrowserInfo("Chrome", "ANY") }, 
+    	  { new BrowserInfo("Firefox", "ANY") },
+    	  { new BrowserInfo("internet explorer", "9") },
+    	  { new BrowserInfo("internet explorer", "10") },
+    	  { new BrowserInfo("internet explorer", "11") }};
+  }
+  
+  @Test(dataProvider = "dp")
+  public void CourseCertificate_21(BrowserInfo browserInfo) throws Exception {
+	SelectDriver selector = new SelectDriver();
+	driver = selector.getDriver(browserInfo.getPlatformName(), browserInfo.getBrowserName(), browserInfo.getVersionNumber());
+	baseUrl = browserInfo.getBaseURL();
+	Login_0 login = new Login_0();
+	login.testLogin0(driver);
+	log.info("got into edit account");
+	Thread.sleep(2000);  
+    driver.get(baseUrl + "/html/desktop/SystemAdministratorDesktop.jsp");
+    driver.get(baseUrl + "/html/course/certificate/CourseCertificateMap.jsp");
+    driver.findElement(By.xpath("(//input[@name='1210936'])[2]")).click();
+    driver.findElement(By.name("1210936")).click();
+    new Select(driver.findElement(By.id("_1210936"))).selectByVisibleText("ETMDS Cert");
+    new Select(driver.findElement(By.id("_1210936"))).selectByVisibleText("JKDDC-JCC Cert");
+    new Select(driver.findElement(By.id("_1210936"))).selectByVisibleText("System Default");
+    driver.findElement(By.cssSelector("input[name=\"map\"]")).click();
+    Assert.assertTrue(driver.findElement(By.xpath("/html/body/table[5]/tbody/tr[2]/td/table/tbody/tr/td")).getText().contains("No changes have been made!"));
+    driver.get(baseUrl + "/html/desktop/SystemAdministratorDesktop.jsp");
+    driver.get(baseUrl + "/html/course/certificate/CourseCertificateMap.jsp");
+    driver.findElement(By.xpath("(//input[@name='1209755'])[2]")).click();
+    driver.findElement(By.cssSelector("input[name=\"map\"]")).click();
+    Assert.assertTrue(driver.findElement(By.xpath("//td[@class='textBlue']")).getText().contains("The following courses will not track certificates anymore"));
+    driver.findElement(By.xpath("/html/body/table[5]/tbody/tr[2]/td/table/tbody/tr[2]/td/input[2]")).click();
+    Assert.assertTrue(driver.findElement(By.xpath("/html/body/table[5]/tbody/tr[2]/td/table/tbody/tr/td")).getText().contains("Course Map has been updated successfully"));
+    driver.findElement(By.xpath("html/body/table[5]/tbody/tr[3]/td/input")).click();
+    driver.get(baseUrl + "/html/course/certificate/CourseCertificateMap.jsp");
+    driver.findElement(By.xpath("(//input[@name='1209755'])[2]")).click();
+    driver.findElement(By.name("1209755")).click();
+    driver.findElement(By.cssSelector("input[name=\"map\"]")).click();
+    Assert.assertTrue(driver.findElement(By.xpath("//td[@class='textBlue']")).getText().contains("The following courses will track certificates"));
+    driver.findElement(By.xpath("html/body/table[5]/tbody/tr[2]/td/table/tbody/tr[2]/td/input[2]")).click();
+    Assert.assertTrue(driver.findElement(By.xpath("/html/body/table[5]/tbody/tr[2]/td/table/tbody/tr/td")).getText().contains("Course Map has been updated successfully"));
+    driver.findElement(By.xpath("html/body/table[5]/tbody/tr[3]/td/input")).click();
+    driver.quit();
+  }
+
+}

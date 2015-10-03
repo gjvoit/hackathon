@@ -1,0 +1,53 @@
+package atlasGroup.atlasID.tests;
+
+import java.util.logging.Logger;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import atlasGroup.atlasID.helperFunctions.BrowserInfo;
+import atlasGroup.atlasID.helperFunctions.SelectDriver;
+import atlasGroup.atlasID.pages.Login_0;
+import atlasGroup.atlasID.pages.TestManagement_62;
+
+public class AddPredecessor_27_test {
+  private WebDriver driver;
+  private String baseUrl;
+  private final static Logger log = Logger.getLogger(TestManagement_62.class.getName());
+
+  @DataProvider
+  public Object[][] dp() {
+      return new Object[][] { 
+    	  { new BrowserInfo("Chrome", "ANY") }, 
+    	  { new BrowserInfo("Firefox", "ANY") },
+    	  { new BrowserInfo("internet explorer", "9") },
+    	  { new BrowserInfo("internet explorer", "10") },
+    	  { new BrowserInfo("internet explorer", "11") }};
+  }
+  
+  @Test(dataProvider = "dp")
+  public void AddPredecessor_27(BrowserInfo browserInfo) throws Exception {
+	SelectDriver selector = new SelectDriver();
+	driver = selector.getDriver(browserInfo.getPlatformName(), browserInfo.getBrowserName(), browserInfo.getVersionNumber());
+	baseUrl = browserInfo.getBaseURL();
+	Login_0 login = new Login_0();
+	login.testLogin0(driver);
+	Thread.sleep(2000);  
+	log.info("Started AddPredecessor_27");
+    driver.get(baseUrl + "html/desktop/SystemAdministratorDesktop.jsp");
+    driver.get(baseUrl + "html/utilities/admin/reference/PredecessorCourseAssociation.jsp");
+    
+    driver.findElement(By.id("currentCourseID")).sendKeys("ACQ402 Executive Management Course");
+    driver.findElement(By.id("predCourseID")).sendKeys("ACQ402 Executive Management Course");
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | id=currentCourseID | label=ACQ402 Executive Management Course]]
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | id=predCourseID | label=ACQ402 Executive Management Course]]
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | id=predCourseID | label=ACQ402 Executive Management Course]]
+    driver.findElement(By.name("Next")).click();
+    driver.findElement(By.linkText("Disassociate")).click();
+    log.info("completed AddPredecessor_27!");
+    driver.quit();
+  }
+
+}

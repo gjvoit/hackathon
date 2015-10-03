@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" thread-count="1" parallel="tests">
+
+	<test name="PC+Firefox">
+		<parameter name="platform"
+		value="WINDOWS" />
+		<parameter name="browser"
+		value="Firefox" />
+		<parameter name="version"
+		value="ANY" />
+		<parameter name="url" value="https://atlasdau-upg-stage1.usae.bah.com/"/>
+		<classes>
+			<!-- <class name="atlasGroup.atlasID.pages.AddPredecessor_27" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.AddSchool_29" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.AddSections_28" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.AddSurvey_43" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.AddVersion_30" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.AtlasProperties_50" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.EditModes_33" />  -->
+			<!-- <class name="atlasGroup.atlasID.pages.LoginNewTestUser_98" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ManageBrands_71" />
+			<class name="atlasGroup.atlasID.pages.ManageFeedback_49" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ManageLoginText_77" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ManageSubBrands_72" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.MergeAccounts_68" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ProfileAttributes_69" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ReferenceTables_94" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ReportManagement_73" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ResendEmail_34" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ScheduledTask_59" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.SendAllUnsent_56" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ResetServerSession_80" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.SurveyList_44" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.NewFeedback_48" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.LoginAsOtherUser_53" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.FindUser_66" /> -->
+			<class name="atlasGroup.atlasID.pages.ViewCourses_32" />
+			<!-- <class name="atlasGroup.atlasID.pages.FindAndEditUser_97" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.EmailManagement_100" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.TestEngineManagement_95" /> -->
+		</classes>
+	</test>
+	
+	<test name="PC+Chrome">
+		<parameter name="platform"
+		value="WINDOWS" />
+		<parameter name="browser"
+		value="Chrome" />
+		<parameter name="version"
+		value="ANY" />
+		<parameter name="url" value="https://atlasdau-upg-stage1.usae.bah.com/"/>
+		<classes>
+			<!-- <class name="atlasGroup.atlasID.pages.AddPredecessor_27" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.AddSchool_29" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.AddSections_28" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.AddSurvey_43" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.AddVersion_30" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.AtlasProperties_50" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.EditModes_33" />  -->
+			<!-- <class name="atlasGroup.atlasID.pages.LoginNewTestUser_98" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ManageBrands_71" />
+			<class name="atlasGroup.atlasID.pages.ManageFeedback_49" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ManageLoginText_77" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ManageSubBrands_72" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.MergeAccounts_68" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ProfileAttributes_69" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ReferenceTables_94" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ReportManagement_73" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ResendEmail_34" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ScheduledTask_59" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.SendAllUnsent_56" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ResetServerSession_80" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.SurveyList_44" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.NewFeedback_48" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.LoginAsOtherUser_53" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.FindUser_66" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ViewCourses_32" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.FindAndEditUser_97" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.EmailManagement_100" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.TestEngineManagement_95" /> -->
+		</classes>
+	</test>
+ 
+<!-- 	<test name="PC+IE 8">
+		<parameter name="platform"
+		value="Windows" />
+		<parameter name="browser"
+		value="internet explorer" />
+		<parameter name="version"
+		value="8" />
+		<parameter name="url" value="https://atlasdau-upg-stage1.usae.bah.com/"/>
+		<classes>
+			<class name="atlasGroup.atlasID.pages.AddPredecessor_27" />
+		</classes> 
+	</test> 
+ -->
+	
+	<test name="PC+IE 9">
+		<parameter name="platform"
+		value="Windows" />
+		<parameter name="browser"
+		value="internet explorer" />
+		<parameter name="version"
+		value="9" />
+		<parameter name="url" value="https://atlasdau-upg-stage1.usae.bah.com/"/>
+		<classes>
+			<!-- <class name="atlasGroup.atlasID.pages.AddPredecessor_27" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.AddSchool_29" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.AddSections_28" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.AddSurvey_43" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.AddVersion_30" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.AtlasProperties_50" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.EditModes_33" />  -->
+			<!-- <class name="atlasGroup.atlasID.pages.LoginNewTestUser_98" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ManageBrands_71" />
+			<class name="atlasGroup.atlasID.pages.ManageFeedback_49" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ManageLoginText_77" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ManageSubBrands_72" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.MergeAccounts_68" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ProfileAttributes_69" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ReferenceTables_94" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ResendEmail_34" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ScheduledTask_59" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.SendAllUnsent_56" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ResetServerSession_80" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.SurveyList_44" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.NewFeedback_48" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.LoginAsOtherUser_53" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.FindUser_66" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ViewCourses_32" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.FindAndEditUser_97" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.EmailManagement_100" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.TestEngineManagement_95" /> -->
+		</classes>
+	</test>
+ 
+	<test name="PC+IE 10">
+		<parameter name="platform"
+		value="Windows" />
+		<parameter name="browser"
+		value="internet explorer" />
+		<parameter name="version"
+		value="10" />
+		<parameter name="url" value="https://atlasdau-upg-stage1.usae.bah.com/"/>
+		<classes>
+			<!-- <class name="atlasGroup.atlasID.pages.AddPredecessor_27" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.AddSchool_29" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.AddSections_28" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.AddSurvey_43" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.AddVersion_30" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.AtlasProperties_50" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.EditModes_33" />  -->
+			<!-- <class name="atlasGroup.atlasID.pages.LoginNewTestUser_98" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ManageBrands_71" />
+			<class name="atlasGroup.atlasID.pages.ManageFeedback_49" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ManageLoginText_77" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ManageSubBrands_72" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.MergeAccounts_68" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ProfileAttributes_69" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ReferenceTables_94" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ReportManagement_73" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ResendEmail_34" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ScheduledTask_59" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.SendAllUnsent_56" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ResetServerSession_80" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.SurveyList_44" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.NewFeedback_48" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.LoginAsOtherUser_53" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.FindUser_66" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ViewCourses_32" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.FindAndEditUser_97" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.EmailManagement_100" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.TestEngineManagement_95" /> -->
+		</classes>
+	</test> 
+	
+	<test name="PC+IE 11">
+		<parameter name="platform"
+		value="Windows" />
+		<parameter name="browser"
+		value="internet explorer" />
+		<parameter name="version"
+		value="11" />
+		<parameter name="url" value="https://atlasdau-upg-stage1.usae.bah.com/"/>
+		<classes>
+			<!-- <class name="atlasGroup.atlasID.pages.AddPredecessor_27" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.AddSchool_29" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.AddSections_28" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.AddSurvey_43" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.AddVersion_30" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.AtlasProperties_50" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.EditModes_33" />  -->
+			<!-- <class name="atlasGroup.atlasID.pages.LoginNewTestUser_98" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ManageBrands_71" />
+			<class name="atlasGroup.atlasID.pages.ManageFeedback_49" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ManageLoginText_77" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ManageSubBrands_72" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.MergeAccounts_68" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ProfileAttributes_69" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ReferenceTables_94" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ReportManagement_73" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ResendEmail_34" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ScheduledTask_59" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.SendAllUnsent_56" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ResetServerSession_80" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.SurveyList_44" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.NewFeedback_48" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.LoginAsOtherUser_53" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.FindUser_66" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.ViewCourses_32" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.FindAndEditUser_97" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.EmailManagement_100" /> -->
+			<!-- <class name="atlasGroup.atlasID.pages.TestEngineManagement_95" /> -->
+		</classes>
+	</test> 
+
+</suite> <!-- Suite -->

@@ -1,0 +1,58 @@
+package atlasGroup.atlasID.pages;
+
+import java.util.List;
+import java.util.logging.Logger;
+
+import org.junit.Assert;
+import org.openqa.selenium.*;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.*;
+
+import atlasGroup.atlasID.helperFunctions.SelectDriver;
+import atlasGroup.atlasID.pages.Login_0;
+
+public class SurveyForKA_61 {
+  private WebDriver driver;
+  private String baseUrl;
+  private final static Logger log = Logger.getLogger(TestManagement_62.class.getName());
+
+  @Parameters({ "platform","browser","version", "url" })
+  @BeforeTest(alwaysRun=true)
+  public void setUp(String platform, String browser, String version, String url) throws Exception {
+	  SelectDriver selector = new SelectDriver();
+	  driver = selector.getDriver(platform, browser, version);
+	  baseUrl = url;
+  }
+  
+  @Test(description="SurveyForKA_61")
+  public void testActivate_Deactivate_65() throws Exception {
+	Login_0 login = new Login_0();
+	login.testLogin0(driver);
+	Thread.sleep(2000);  
+	log.info("Started SurveyForKA_61");
+	driver.get(baseUrl + "/html/desktop/SystemAdministratorDesktop.jsp");
+    driver.get(baseUrl + "html/survey/xml/GenerateXmlFile.jsp");
+    
+    // ERROR: Caught exception [ERROR: Unsupported command [selectWindow | null | ]]
+    new Select(driver.findElement(By.id("prefix"))).selectByVisibleText("PSC");
+    driver.navigate().refresh();
+    new Select(driver.findElement(By.id("prefix"))).selectByVisibleText("TST");
+    driver.navigate().refresh();
+    new Select(driver.findElement(By.id("order"))).selectByVisibleText("TST001W Wen's 404 (Version 5)");
+    driver.navigate().refresh();
+    new Select(driver.findElement(By.id("order"))).selectByVisibleText("TST001W Wen's 404 (Version 1)");
+    driver.navigate().refresh();
+    new Select(driver.findElement(By.id("order"))).selectByVisibleText("TST101 Introduction to Acquisition Workforce Test and Evaluation (Version 4)");
+    driver.navigate().refresh();
+    new Select(driver.findElement(By.id("order"))).selectByVisibleText("TST001W Wen's 404 (Version 5)");
+    driver.navigate().refresh();
+    driver.findElement(By.cssSelector("input.orangeDefaultSize")).click();
+  }
+
+  @AfterTest
+  public void tearDown() throws Exception {
+    driver.quit();
+  }
+
+}

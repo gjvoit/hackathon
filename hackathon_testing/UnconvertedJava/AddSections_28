@@ -1,0 +1,115 @@
+package com.example.tests;
+
+import java.util.regex.Pattern;
+import java.util.concurrent.TimeUnit;
+import org.junit.*;
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+import org.openqa.selenium.*;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class 28AddSections {
+  private WebDriver driver;
+  private String baseUrl;
+  private boolean acceptNextAlert = true;
+  private StringBuffer verificationErrors = new StringBuffer();
+
+  @Before
+  public void setUp() throws Exception {
+    driver = new FirefoxDriver();
+    baseUrl = "https://atlasdau-upg-stage1.usae.bah.com/";
+    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+  }
+
+  @Test
+  public void test28AddSections() throws Exception {
+    driver.get(baseUrl + "/html/desktop/SystemAdministratorDesktop.jsp");
+    driver.findElement(By.xpath("(.//*[@class='aMenu2'][contains(text(),'Add Sections')])")).click();
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("CLG");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("CLM");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("AUD");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("ACQ");
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | name=key | label=ACQ1002 MJTst1002Scorm2004]]
+    // ERROR: Caught exception [Error: unknown strategy [class] for locator [class=dark]]
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("CAR");
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | name=key | label=CAR805 Contemporary Approaches to Acquisition Reform]]
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("ACQ");
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | name=key | label=ACQ001 ACQ 101 Course]]
+    // ERROR: Caught exception [Error: unknown strategy [class] for locator [class=dark]]
+    driver.findElement(By.linkText("[Add Section]")).click();
+    new Select(driver.findElement(By.name("enrollmentFlag"))).selectByVisibleText("No");
+    new Select(driver.findElement(By.name("enrollmentFlag"))).selectByVisibleText("Yes");
+    new Select(driver.findElement(By.id("month-fieldmonthdayyear"))).selectByVisibleText("August");
+    new Select(driver.findElement(By.id("day-fieldmonthdayyear"))).selectByVisibleText("16");
+    driver.findElement(By.id("year-fieldmonthdayyear")).clear();
+    driver.findElement(By.id("year-fieldmonthdayyear")).sendKeys("2015");
+    new Select(driver.findElement(By.id("day-fieldmonthdayyear"))).selectByVisibleText("17");
+    driver.findElement(By.cssSelector("option[value=\"17\"]")).click();
+    new Select(driver.findElement(By.id("month-fieldmonth1day1year1"))).selectByVisibleText("August");
+    new Select(driver.findElement(By.id("month-fieldmonth1day1year1"))).selectByVisibleText("January");
+    new Select(driver.findElement(By.id("day-fieldmonth1day1year1"))).selectByVisibleText("3");
+    driver.findElement(By.id("year-fieldmonth1day1year1")).clear();
+    driver.findElement(By.id("year-fieldmonth1day1year1")).sendKeys("2020");
+    driver.findElement(By.name("maxSize")).clear();
+    driver.findElement(By.name("maxSize")).sendKeys("100");
+    driver.findElement(By.name("minSize")).clear();
+    driver.findElement(By.name("minSize")).sendKeys("1");
+    driver.findElement(By.id("add section")).click();
+    driver.findElement(By.name("sectionNumber")).clear();
+    driver.findElement(By.name("sectionNumber")).sendKeys("12345");
+    driver.findElement(By.id("add section")).click();
+    driver.findElement(By.cssSelector("input[name=\"add\"]")).click();
+    // ERROR: Caught exception [Error: unknown strategy [class] for locator [class=message]]
+    driver.findElement(By.id("back")).click();
+    driver.findElement(By.xpath("(//a[contains(text(),'Section Info')])[2]")).click();
+    driver.findElement(By.name("Delete")).click();
+    // ERROR: Caught exception [Error: unknown strategy [class] for locator [class=message]]
+    driver.findElement(By.name("Back")).click();
+    // ERROR: Caught exception [Error: unknown strategy [class] for locator [class=MESSAGE]]
+    // ERROR: Caught exception [ERROR: Unsupported command [selectWindow | null | ]]
+    driver.findElement(By.name("Back")).click();
+  }
+
+  @After
+  public void tearDown() throws Exception {
+    driver.quit();
+    String verificationErrorString = verificationErrors.toString();
+    if (!"".equals(verificationErrorString)) {
+      fail(verificationErrorString);
+    }
+  }
+
+  private boolean isElementPresent(By by) {
+    try {
+      driver.findElement(by);
+      return true;
+    } catch (NoSuchElementException e) {
+      return false;
+    }
+  }
+
+  private boolean isAlertPresent() {
+    try {
+      driver.switchTo().alert();
+      return true;
+    } catch (NoAlertPresentException e) {
+      return false;
+    }
+  }
+
+  private String closeAlertAndGetItsText() {
+    try {
+      Alert alert = driver.switchTo().alert();
+      String alertText = alert.getText();
+      if (acceptNextAlert) {
+        alert.accept();
+      } else {
+        alert.dismiss();
+      }
+      return alertText;
+    } finally {
+      acceptNextAlert = true;
+    }
+  }
+}

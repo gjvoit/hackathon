@@ -1,0 +1,94 @@
+package com.example.tests;
+
+import java.util.regex.Pattern;
+import java.util.concurrent.TimeUnit;
+import org.junit.*;
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+import org.openqa.selenium.*;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class 73ReportManagement {
+  private WebDriver driver;
+  private String baseUrl;
+  private boolean acceptNextAlert = true;
+  private StringBuffer verificationErrors = new StringBuffer();
+
+  @Before
+  public void setUp() throws Exception {
+    driver = new FirefoxDriver();
+    baseUrl = "https://atlasdau-upg-stage1.usae.bah.com/";
+    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+  }
+
+  @Test
+  public void test73ReportManagement() throws Exception {
+    driver.get(baseUrl + "/html/desktop/SystemAdministratorDesktop.jsp");
+    driver.findElement(By.xpath("(.//*[@class='aSmall'][contains(text(),'Report Management')])")).click();
+    new Select(driver.findElement(By.name("role"))).selectByVisibleText("regexp:\\s+Help Desk\\s+");
+    new Select(driver.findElement(By.name("role"))).selectByVisibleText("regexp:\\s+Course Manager\\s+");
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | name=availableItems | label=CLC Graduation Report]]
+    driver.findElement(By.name("Add")).click();
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | name=selectedItems | label=CLC Graduation Report]]
+    driver.findElement(By.name("Remove")).click();
+    new Select(driver.findElement(By.name("role"))).selectByVisibleText("regexp:\\s+Course Manager Regional Rep\\.\\s+");
+    new Select(driver.findElement(By.name("role"))).selectByVisibleText("regexp:\\s+Course Manager\\s+");
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | name=availableItems | label=CLC Graduation Report]]
+    driver.findElement(By.name("Add")).click();
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | name=selectedItems | label=CLC Graduation Report]]
+    driver.findElement(By.name("Remove")).click();
+    new Select(driver.findElement(By.name("role"))).selectByVisibleText("regexp:\\s+Instructor\\s+");
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | name=availableItems | label=Average Waitlist Time]]
+    driver.findElement(By.name("Add")).click();
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | name=selectedItems | label=Average Waitlist Time]]
+    new Select(driver.findElement(By.name("role"))).selectByVisibleText("regexp:\\s+Help Desk\\s+");
+    new Select(driver.findElement(By.name("role"))).selectByVisibleText("regexp:\\s+Instructor\\s+");
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | name=selectedItems | label=Average Waitlist Time]]
+    driver.findElement(By.name("Remove")).click();
+    new Select(driver.findElement(By.name("role"))).selectByVisibleText("regexp:\\s+Help Desk\\s+");
+    new Select(driver.findElement(By.name("role"))).selectByVisibleText("regexp:\\s+Instructor\\s+");
+  }
+
+  @After
+  public void tearDown() throws Exception {
+    driver.quit();
+    String verificationErrorString = verificationErrors.toString();
+    if (!"".equals(verificationErrorString)) {
+      fail(verificationErrorString);
+    }
+  }
+
+  private boolean isElementPresent(By by) {
+    try {
+      driver.findElement(by);
+      return true;
+    } catch (NoSuchElementException e) {
+      return false;
+    }
+  }
+
+  private boolean isAlertPresent() {
+    try {
+      driver.switchTo().alert();
+      return true;
+    } catch (NoAlertPresentException e) {
+      return false;
+    }
+  }
+
+  private String closeAlertAndGetItsText() {
+    try {
+      Alert alert = driver.switchTo().alert();
+      String alertText = alert.getText();
+      if (acceptNextAlert) {
+        alert.accept();
+      } else {
+        alert.dismiss();
+      }
+      return alertText;
+    } finally {
+      acceptNextAlert = true;
+    }
+  }
+}
