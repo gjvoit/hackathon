@@ -1,0 +1,95 @@
+package atlasGroup.atlasID.pages;
+
+import java.util.logging.Logger;
+
+import org.junit.Assert;
+import org.openqa.selenium.*;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.*;
+
+import atlasGroup.atlasID.pages.Login_0;
+import atlasGroup.atlasID.pages.SelectDriver;
+
+public class EmailManagement_100 {
+  private WebDriver driver;
+  private String baseUrl;
+  private boolean acceptNextAlert = true;
+  private StringBuffer verificationErrors = new StringBuffer();
+  private final static Logger log = Logger.getLogger(TestManagement_62.class.getName());
+
+  @Parameters({ "platform","browser","version", "url" })
+  @BeforeTest(alwaysRun=true)
+  public void setUp(String platform, String browser, String version, String url) throws Exception {
+	  SelectDriver selector = new SelectDriver();
+	  driver = selector.getDriver(platform, browser, version);
+	  baseUrl = url;
+  }
+  
+  @Test(description="EmailManagement_100")
+  public void test100EmailManagement() throws Exception {
+	Login_0 login = new Login_0();
+	login.testLogin0(driver);
+	Thread.sleep(2000);  
+    driver.get(baseUrl + "html/desktop/SystemAdministratorDesktop.jsp");
+    driver.get(baseUrl + "html/email/AdministratorEmailUtils.jsp");
+	log.info("starting EmailManagement_100");
+    new Select(driver.findElement(By.name("emailGroup"))).selectByVisibleText("Forum");
+    Thread.sleep(1000);
+    new Select(driver.findElement(By.name("emailGroup"))).selectByVisibleText("Task");
+    Thread.sleep(1000);
+    new Select(driver.findElement(By.name("emailDefaultText"))).selectByVisibleText("New Assignment Thread Posted");
+    Thread.sleep(1000);
+    new Select(driver.findElement(By.name("emailGroup"))).selectByVisibleText("Certification");
+    Thread.sleep(1000);
+    new Select(driver.findElement(By.name("emailDefaultText"))).selectByVisibleText("Certification Graduation");
+    Thread.sleep(1000);
+    new Select(driver.findElement(By.name("emailGroup"))).selectByVisibleText("Campus");
+    Thread.sleep(1000);
+    log.info("starting EmailManagement_100 -- 1");
+    driver.findElement(By.name("emailName")).clear();
+    driver.findElement(By.name("emailName")).sendKeys("test@bah.com");
+    new Select(driver.findElement(By.name("emailDefaultText"))).selectByVisibleText("Collaboration Email");
+    log.info("starting EmailManagement_100 -- 2");
+    Thread.sleep(1000);
+    new Select(driver.findElement(By.name("emailGroup"))).selectByVisibleText("Course");
+    Thread.sleep(1000);
+    log.info("starting EmailManagement_100 -- 2.4");
+    try{
+    	new Select(driver.findElement(By.name("emailDefaultText"))).selectByVisibleText("Waitlisted Notification");
+    } catch (Exception e){
+    	log.info("starting EmailManagement_100 -- 2.5 -- wasn't able to click Waitlisted Notifcation at first, probably on IE 11");
+    	Thread.sleep(5000);
+    	new Select(driver.findElement(By.name("emailDefaultText"))).selectByVisibleText("Waitlisted Notification");
+    }
+    log.info("starting EmailManagement_100 -- 2.6");
+    Thread.sleep(1000);
+    log.info("starting EmailManagement_100 -- 3");
+    driver.findElement(By.name("emailName")).clear();
+    driver.findElement(By.name("emailName")).sendKeys("Waitlisted Notification  ....test");
+    driver.findElement(By.name("submit2")).click();
+    log.info("starting EmailManagement_100 -- 3.4");
+    Assert.assertTrue(driver.findElement(By.xpath("html/body/form/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td")).getText().contains("You are about to Update Waitlisted Notification ....test Email"));
+    log.info("starting EmailManagement_100 -- 3.6");
+    driver.findElement(By.name("submit")).click();
+    new Select(driver.findElement(By.name("emailGroup"))).selectByVisibleText("Course");
+    Thread.sleep(1000);
+    log.info("starting EmailManagement_100 -- 4");
+    new Select(driver.findElement(By.name("emailDefaultText"))).selectByVisibleText("Waitlisted Notification ....test");
+    Thread.sleep(1000);
+    driver.findElement(By.name("emailName")).clear();
+    log.info("starting EmailManagement_100 -- 5");
+    driver.findElement(By.name("emailName")).sendKeys("Waitlisted Notification");
+    driver.findElement(By.name("submit2")).click();
+    Assert.assertTrue(driver.findElement(By.xpath("html/body/form/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td")).getText().contains("You are about to Update Waitlisted Notification Email"));
+
+    driver.findElement(By.name("submit")).click();
+    log.info("completing EmailManagement_100!");
+  }
+
+  @AfterTest
+  public void tearDown() throws Exception {
+    driver.quit();
+  }
+
+}

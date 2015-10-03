@@ -1,0 +1,92 @@
+package com.example.tests;
+
+import java.util.regex.Pattern;
+import java.util.concurrent.TimeUnit;
+import org.junit.*;
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+import org.openqa.selenium.*;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class 67LegacyUsernameMapping {
+  private WebDriver driver;
+  private String baseUrl;
+  private boolean acceptNextAlert = true;
+  private StringBuffer verificationErrors = new StringBuffer();
+
+  @Before
+  public void setUp() throws Exception {
+    driver = new FirefoxDriver();
+    baseUrl = "https://atlasdau-upg-stage1.usae.bah.com/";
+    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+  }
+
+  @Test
+  public void test67LegacyUsernameMapping() throws Exception {
+    driver.get(baseUrl + "/html/desktop/SystemAdministratorDesktop.jsp");
+    driver.findElement(By.xpath("(.//*[@class='aMenu1'][contains(text(),'Legacy Username Mapping')])")).click();
+    assertEquals("User Mapping between Legacy User Name and DAU ID", driver.findElement(By.xpath("/html/body/form/table/tbody/tr[1]/td/table/tbody/tr/td")).getText());
+    driver.findElement(By.name("firstName")).clear();
+    driver.findElement(By.name("firstName")).sendKeys("Booz");
+    driver.findElement(By.name("lastName")).clear();
+    driver.findElement(By.name("lastName")).sendKeys("Allen");
+    driver.findElement(By.name("dauId")).clear();
+    driver.findElement(By.name("dauId")).sendKeys("ataas_dau_id");
+    driver.findElement(By.cssSelector("input.orangeDefaultSize")).click();
+    assertEquals("No records were found that match your search criteria. Please try again.", driver.findElement(By.xpath(".//*[@id='userTable']/tbody/tr[2]/td/table/tbody/tr/td")).getText());
+    driver.findElement(By.name("dauId")).clear();
+    driver.findElement(By.name("dauId")).sendKeys("");
+    driver.findElement(By.cssSelector("input.orangeDefaultSize")).click();
+    assertEquals("TECHADMIN", driver.findElement(By.xpath("/html/body/form[2]/div/table/tbody/tr[3]/td/table/tbody/tr[2]/td[3]")).getText());
+    driver.findElement(By.name("firstName")).clear();
+    driver.findElement(By.name("firstName")).sendKeys("");
+    driver.findElement(By.name("lastName")).clear();
+    driver.findElement(By.name("lastName")).sendKeys("");
+    driver.findElement(By.name("dauId")).clear();
+    driver.findElement(By.name("dauId")).sendKeys("temp_dau_id");
+    driver.findElement(By.cssSelector("input.orangeDefaultSize")).click();
+  }
+
+  @After
+  public void tearDown() throws Exception {
+    driver.quit();
+    String verificationErrorString = verificationErrors.toString();
+    if (!"".equals(verificationErrorString)) {
+      fail(verificationErrorString);
+    }
+  }
+
+  private boolean isElementPresent(By by) {
+    try {
+      driver.findElement(by);
+      return true;
+    } catch (NoSuchElementException e) {
+      return false;
+    }
+  }
+
+  private boolean isAlertPresent() {
+    try {
+      driver.switchTo().alert();
+      return true;
+    } catch (NoAlertPresentException e) {
+      return false;
+    }
+  }
+
+  private String closeAlertAndGetItsText() {
+    try {
+      Alert alert = driver.switchTo().alert();
+      String alertText = alert.getText();
+      if (acceptNextAlert) {
+        alert.accept();
+      } else {
+        alert.dismiss();
+      }
+      return alertText;
+    } finally {
+      acceptNextAlert = true;
+    }
+  }
+}

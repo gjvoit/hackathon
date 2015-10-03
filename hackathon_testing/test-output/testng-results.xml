@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="2" passed="2">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Suite" duration-ms="22473" started-at="2015-08-26T19:34:57Z" finished-at="2015-08-26T19:35:19Z">
+    <groups>
+    </groups>
+    <test name="test 1" duration-ms="20632" started-at="2015-08-26T19:34:57Z" finished-at="2015-08-26T19:35:18Z">
+      <class name="LabelCraft.archlabelcraft.jbehave.AcceptanceTestSuite">
+        <test-method status="PASS" signature="beforeTest(java.lang.String)[pri:0, instance:LabelCraft.archlabelcraft.jbehave.AcceptanceTestSuite@685cb137]" name="beforeTest" is-config="true" duration-ms="2567" started-at="2015-08-26T15:34:57Z" finished-at="2015-08-26T15:35:00Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[firefox]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="run()[pri:0, instance:LabelCraft.archlabelcraft.jbehave.AcceptanceTestSuite@685cb137]" name="run" duration-ms="17870" started-at="2015-08-26T15:35:00Z" finished-at="2015-08-26T15:35:17Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- run -->
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:LabelCraft.archlabelcraft.jbehave.AcceptanceTestSuite@685cb137]" name="afterTest" is-config="true" duration-ms="184" started-at="2015-08-26T15:35:17Z" finished-at="2015-08-26T15:35:18Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+      </class> <!-- LabelCraft.archlabelcraft.jbehave.AcceptanceTestSuite -->
+    </test> <!-- test 1 -->
+    <test name="test 1.1" duration-ms="22452" started-at="2015-08-26T19:34:57Z" finished-at="2015-08-26T19:35:19Z">
+      <class name="LabelCraft.archlabelcraft.jbehave.AcceptanceTestSuite">
+        <test-method status="PASS" signature="beforeTest(java.lang.String)[pri:0, instance:LabelCraft.archlabelcraft.jbehave.AcceptanceTestSuite@402a079c]" name="beforeTest" is-config="true" duration-ms="5594" started-at="2015-08-26T15:34:57Z" finished-at="2015-08-26T15:35:03Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[firefox]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="run()[pri:0, instance:LabelCraft.archlabelcraft.jbehave.AcceptanceTestSuite@402a079c]" name="run" duration-ms="16739" started-at="2015-08-26T15:35:03Z" finished-at="2015-08-26T15:35:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- run -->
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:LabelCraft.archlabelcraft.jbehave.AcceptanceTestSuite@402a079c]" name="afterTest" is-config="true" duration-ms="118" started-at="2015-08-26T15:35:19Z" finished-at="2015-08-26T15:35:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+      </class> <!-- LabelCraft.archlabelcraft.jbehave.AcceptanceTestSuite -->
+    </test> <!-- test 1.1 -->
+  </suite> <!-- Suite -->
+</testng-results>

@@ -1,0 +1,106 @@
+Story: User checks and updates drug labels
+Authored by Manoj Mandava, Mehran Mizani, Courtney Davis July, 27 2015
+
+Narrative:
+As a consumer of prescription and over-the-counter drugs
+I want to check drug side effects and possibly improve drug labels 
+So that I can make informed decisions when purchasing and consuming drugs
+	
+				
+Scenario: Homepage accessed from public or private network
+Given user is on any network
+When user enters labelcraft url
+Then user should see labelcraft homepage
+
+Scenario: Picking Crestor
+Given user is on labelcraft page
+When user types in 'CRESTOR' in the search box
+And user clicks search button
+Then user should see 'Reported Side Effect:' displayed
+
+
+Scenario: Filling out the survey with yes
+Given user is looking at the survey
+When user looks at label they select yes if the side effect is report or no if it is not
+Then the user should finish their survery and see 'Way to go!' displayed
+
+Scenario: Fill survey without entering name 
+Given user finishes a survey
+When user clicks submit without entering text in field
+Then user receives message to enter name
+
+Scenario: Submitting name
+Given user sees 'Way to go!'
+When user types in 'Ugg Lee, FL' in the name field
+And user submits name
+Then user should no longer see the submition message
+
+Scenario: Link to FDA site
+Given FDA link is visible
+When user clicks on the FDA link
+Then user should see open.fda.gov homepage
+
+
+
+
+
+
+Scenario: Randomly selecting a drug and Verify Page 2 Url
+Given user is on labelcraft homepage
+When user randomly selects a top 8 drug
+Then the user should see the header message with their drug name
+And url should be 'http://ip-172-31-55-110/#events-reports'
+
+Scenario: Verify drug names on Page 3 and url
+Given user is on the second step page
+When user selects go to step 3
+Then the user should see the header message with their drug name
+And url should be 'http://ip-172-31-55-110/#label-accuracy'
+
+Scenario: Verify labelcraft link in the header takes user to home page
+Given user is on the step 3 page
+When user clicks on the labelcraft link in the tabs
+Then the user should see the labelcraft homepage
+
+Scenario: Meet The Team
+Given user is on the third page
+When user selects meet the team
+Then the user should see Wyatt Chaffee
+
+
+
+
+Scenario: User looks up non-existent drug
+Given user is on homepage to start
+When user enters non-valid search entry '!random'
+Then user should not see any results listed
+
+Scenario: User search one letter; autocomplete finds first entry
+When user performs a search for 'c'
+Then user should see drug report for 'CHOLINE'
+
+Scenario: Perform Multiple Searches
+Given user performed a search for 'NEXIUM'
+When user searches for drug 'CRESTOR'
+Then the drug information for 'CRESTOR' should be displayed
+
+
+Scenario: Link to API website
+Given API link is visible
+When user clicks on the API link
+Then user should see API homepage
+
+	
+	
+	
+				
+Scenario: User clicks Show Full Label with full screen
+Given user has searched for drug
+When user clicks Show full label
+Then user should see information label for said drug on pop-up screen
+
+Scenario: Page width is too low
+Given webpage is set to 900 x 645
+Then user should see the show full label icon	
+
+

@@ -1,0 +1,87 @@
+package atlasGroup.atlasID.pages;
+
+import java.util.List;
+import java.util.logging.Logger;
+
+import org.junit.Assert;
+import org.openqa.selenium.*;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.*;
+
+import atlasGroup.atlasID.helperFunctions.SelectDriver;
+import atlasGroup.atlasID.pages.Login_0;
+
+public class ScheduledTask_59 {
+  private WebDriver driver;
+  private String baseUrl;
+  private final static Logger log = Logger.getLogger(TestManagement_62.class.getName());
+
+  @Parameters({ "platform","browser","version", "url" })
+  @BeforeTest(alwaysRun=true)
+  public void setUp(String platform, String browser, String version, String url) throws Exception {
+	  SelectDriver selector = new SelectDriver();
+	  driver = selector.getDriver(platform, browser, version);
+	  baseUrl = url;
+  }
+  
+  @Test(description="ScheduledTask_59")
+  public void testActivate_Deactivate_65() throws Exception {
+	Login_0 login = new Login_0();
+	login.testLogin0(driver);
+	Thread.sleep(2000);  
+	log.info("Started ScheduledTask_59");
+	driver.get(baseUrl + "/html/desktop/SystemAdministratorDesktop.jsp");
+    driver.get(baseUrl + "html/email/EmailTaskSchedule.jsp");
+//    log.info("Started ScheduledTask_59 -- 0.1");
+//    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("ACQ");
+//    log.info("Started ScheduledTask_59 -- 0.2");
+//    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("CLI");
+//    log.info("Started ScheduledTask_59 -- 0.3");
+//    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("CLR");
+//    log.info("Started ScheduledTask_59 -- 0.4");
+//    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("CLC");
+//    log.info("Started ScheduledTask_59 -- 0.5");
+//    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("BCF");
+//    log.info("Started ScheduledTask_59 -- 0.6");
+//    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("All");
+//    log.info("Started ScheduledTask_59 -- 0.7");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("TST");
+    log.info("Started ScheduledTask_59 -- 0.8");
+    Thread.sleep(500);
+    driver.navigate().refresh();
+    Thread.sleep(500);;
+//    new Select(driver.findElement(By.name("courseInfo"))).selectByVisibleText("TST101 Introduction to Acquisition Workforce Test and Evaluation");
+//    new Select(driver.findElement(By.name("courseInfo"))).selectByVisibleText("TST210012 CMQ210012 by RP");
+    new Select(driver.findElement(By.name("courseInfo"))).selectByVisibleText("TST101 Introduction to Acquisition Workforce Test and Evaluation");
+    Thread.sleep(500);
+    driver.navigate().refresh();
+    Thread.sleep(500);;
+    log.info("Started ScheduledTask_59 -- 1");
+    
+    driver.findElement(By.name("enableDisable")).click();
+    driver.findElement(By.name("enableDisable")).click();
+
+    try{
+    	driver.findElement(By.xpath("(//a[contains(text(),'[Run Process Manually]')])[55]")).click();
+    } catch (Exception e){
+    	log.info("Started ScheduledTask_59 -- 1.5 -- couldn't click Run Process Manually originally");
+    	driver.findElement(By.xpath("/html/body/form/table/tbody/tr[4]/td/table/tbody/tr[2]/td/table/tbody/tr[56]/td[6]/a")).click();
+    }
+    log.info("Started ScheduledTask_59 -- 2");
+    Thread.sleep(7000);
+//    driver.findElement(By.name("submit")).click();
+    Assert.assertEquals("DeRegistering Students - 0", driver.findElement(By.xpath("/html/body/form/table/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td/ul/li")).getText());
+    // ERROR: Caught exception [Error: unknown strategy [class] for locator [class=result]]
+    log.info("Started ScheduledTask_59 -- 3");
+    driver.findElement(By.name("submit")).click();
+    driver.get(baseUrl + "/html/desktop/SystemAdministratorDesktop.jsp");
+    log.info("completed ScheduledTask_59!");
+  }
+
+  @AfterTest
+  public void tearDown() throws Exception {
+    driver.quit();
+  }
+
+}

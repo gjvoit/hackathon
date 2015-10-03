@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" thread-count="1" parallel="tests">
+
+	<test name="PC+ALL">
+		<classes>
+<!-- 		<class name="atlasGroup.atlasID.tests.EmailManagement_100_test" />
+			<class name="atlasGroup.atlasID.tests.ViewCourses_32_test" />
+			<class name="atlasGroup.atlasID.tests.AddPredecessor_27_test" />
+			<class name="atlasGroup.atlasID.tests.AddSections_28_test" />
+			<class name="atlasGroup.atlasID.tests.CourseCertificate_21_test" />
+			<class name="atlasGroup.atlasID.tests.AtlasReports_86_test" /> 
+			<class name="atlasGroup.atlasID.tests.AddSchool_29_test" />
+			<class name="atlasGroup.atlasID.tests.AddSurvey_43_test" />
+			<class name="atlasGroup.atlasID.tests.CLCResend_55_test" />
+			<class name="atlasGroup.atlasID.tests.AddSchool_29_test" /> 
+			<class name="atlasGroup.atlasID.tests.RefMaintTable_79_test" />
+			<class name="atlasGroup.atlasID.tests.AddSchool_29_test" />
+			<class name="atlasGroup.atlasID.tests.TestEngineManagement_95_test/> "
+			 -->
+			
+			<class name="atlasGroup.atlasID.tests.Activate_Deactivate_65_test" />
+			<class name="atlasGroup.atlasID.tests.AddEditPrerequisite_26_test" />
+			<class name="atlasGroup.atlasID.tests.CampusBanner_74_test" /> 
+			<class name="atlasGroup.atlasID.tests.LoginAsOtherUser_53_test" /> 
+		</classes>
+	</test>
+
+</suite> <!-- Suite -->

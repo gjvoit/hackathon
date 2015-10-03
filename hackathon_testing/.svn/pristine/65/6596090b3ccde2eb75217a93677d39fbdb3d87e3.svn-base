@@ -1,0 +1,105 @@
+package com.example.tests;
+
+import java.util.regex.Pattern;
+import java.util.concurrent.TimeUnit;
+import org.junit.*;
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+import org.openqa.selenium.*;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class 30AddVersion {
+  private WebDriver driver;
+  private String baseUrl;
+  private boolean acceptNextAlert = true;
+  private StringBuffer verificationErrors = new StringBuffer();
+
+  @Before
+  public void setUp() throws Exception {
+    driver = new FirefoxDriver();
+    baseUrl = "https://atlasdau-upg-stage1.usae.bah.com/";
+    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+  }
+
+  @Test
+  public void test30AddVersion() throws Exception {
+    driver.get(baseUrl + "/html/desktop/SystemAdministratorDesktop.jsp");
+    driver.findElement(By.xpath("(.//*[@class='aMenu2'][contains(text(),'Add Version')])")).click();
+    new Select(driver.findElement(By.name("course_type_id"))).selectByVisibleText("SCORM2004 Version 3");
+    new Select(driver.findElement(By.name("course_type_id"))).selectByVisibleText("SCORM 1.1");
+    new Select(driver.findElement(By.name("course_type_id"))).selectByVisibleText("SCORM 1.2");
+    driver.findElement(By.name("Submit")).click();
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("ATD");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("ACQ");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("CLE");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("ATD");
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | name=key | label=ATD100 JohnP SCORM 2004 V3 Course]]
+    // ERROR: Caught exception [ERROR: Unsupported command [removeSelection | name=key | label=ATD100 JohnP SCORM 2004 V3 Course]]
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | name=key | label=ATD101 ACTD Boot Camp]]
+    // ERROR: Caught exception [ERROR: Unsupported command [removeSelection | name=key | label=ATD101 ACTD Boot Camp]]
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | name=key | label=ATD102 JohnP SCORM 2004 V3 Course Test FireAnt]]
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("AUD");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("ACQ");
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | name=key | label=ACQ000 clg 004]]
+    driver.findElement(By.name("Submit")).click();
+    driver.findElement(By.name("Submit")).click();
+    driver.findElement(By.name("Submit")).click();
+    // ERROR: Caught exception [ERROR: Unsupported command [selectWindow | null | ]]
+    driver.findElement(By.name("Submit")).click();
+    // ERROR: Caught exception [ERROR: Unsupported command [removeSelection | name=Instructor | label=None]]
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | name=Instructor | label=ALLEN, BOOZ]]
+    new Select(driver.findElement(By.name("primary"))).selectByVisibleText("LAST NAME 1436, FIRST NAME");
+    new Select(driver.findElement(By.name("primary"))).selectByVisibleText("ALLEN, BOOZ");
+    driver.findElement(By.name("Submit")).click();
+    driver.findElement(By.xpath("(//input[@name='Submit'])[2]")).click();
+    driver.findElement(By.linkText("View courses")).click();
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("AUD");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("ATD");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("ACQ");
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | name=key | label=ACQ000 clg 004]]
+    // ERROR: Caught exception [Error: unknown strategy [class] for locator [class=dark]]
+  }
+
+  @After
+  public void tearDown() throws Exception {
+    driver.quit();
+    String verificationErrorString = verificationErrors.toString();
+    if (!"".equals(verificationErrorString)) {
+      fail(verificationErrorString);
+    }
+  }
+
+  private boolean isElementPresent(By by) {
+    try {
+      driver.findElement(by);
+      return true;
+    } catch (NoSuchElementException e) {
+      return false;
+    }
+  }
+
+  private boolean isAlertPresent() {
+    try {
+      driver.switchTo().alert();
+      return true;
+    } catch (NoAlertPresentException e) {
+      return false;
+    }
+  }
+
+  private String closeAlertAndGetItsText() {
+    try {
+      Alert alert = driver.switchTo().alert();
+      String alertText = alert.getText();
+      if (acceptNextAlert) {
+        alert.accept();
+      } else {
+        alert.dismiss();
+      }
+      return alertText;
+    } finally {
+      acceptNextAlert = true;
+    }
+  }
+}

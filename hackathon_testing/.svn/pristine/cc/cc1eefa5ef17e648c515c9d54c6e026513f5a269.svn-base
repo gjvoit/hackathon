@@ -1,0 +1,94 @@
+package atlasGroup.atlasID.pages;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayDeque;
+//import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.safari.SafariDriver;
+
+
+public class WebDriverManager {
+
+
+
+	/*public static HashMap<Long, WebDriver> map = new HashMap<Long, WebDriver>();
+	private static String browserType="";*/
+
+	/*public static HashMap<Integer,BrowserObject> map = new HashMap<Integer,BrowserObject>();
+	public static int count = 0;*/
+
+
+	public static ArrayDeque<WebDriver> in = new  ArrayDeque<WebDriver>();
+	public static ArrayDeque<WebDriver> out = new ArrayDeque<WebDriver>();
+	
+
+	public static void stopDriver() {
+		
+		System.out.println("CLOSINGGGGGG");
+		WebDriver temp = out.pop();
+		temp.close();
+		temp.quit();
+		
+		
+	}
+
+	public static WebDriver getDriverInstance(){
+		
+		WebDriver driver = in.pop();
+		out.add(driver);
+		return driver;
+	}
+	
+
+	public static void startDriver(String type) throws MalformedURLException {
+		WebDriver d;
+		DesiredCapabilities capability;
+		String url = "http://10.200.64.70:4444/wd/hub";
+
+		if (type.equalsIgnoreCase("chrome")){
+			
+			System.setProperty("webdriver.chrome.driver", "../../chromedriver");
+			
+			d = new RemoteWebDriver(new URL(url),DesiredCapabilities.chrome());
+			//d = new ChromeDriver();
+
+			d.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			d.manage().window().setSize(new Dimension(1044,642));
+			in.add(d);
+			
+		} else if(type.equalsIgnoreCase("firefox")) {
+			
+			
+			d = new RemoteWebDriver(new URL(url),DesiredCapabilities.firefox());
+			//d = new FirefoxDriver();
+			//d.manage().window().setSize(new Dimension(1000,748));
+			d.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			d.manage().window().maximize();
+			in.add(d);
+			
+		}else if(type.equalsIgnoreCase("safari")) {
+			//System.setProperty("webdriver.safari.noinstall", "true");
+			d = new RemoteWebDriver(new URL(url),DesiredCapabilities.safari());
+			//d = new SafariDriver();
+			d.manage().window().maximize();
+			in.add(d);
+		}else if(type.equalsIgnoreCase("internet explorer") || type.equalsIgnoreCase("IE") || type.equalsIgnoreCase("ie")) {
+			
+			d = new RemoteWebDriver(new URL(url),DesiredCapabilities.internetExplorer());
+			//d = new InternetExplorerDriver();
+			d.manage().window().maximize();
+			in.add(d);
+		}else {
+			throw new IllegalArgumentException("Browser type not supported: " + type);
+		}
+	}
+}

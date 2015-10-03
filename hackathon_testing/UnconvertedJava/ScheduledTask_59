@@ -1,0 +1,95 @@
+package com.example.tests;
+
+import java.util.regex.Pattern;
+import java.util.concurrent.TimeUnit;
+import org.junit.*;
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+import org.openqa.selenium.*;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class 59ScheduledTask {
+  private WebDriver driver;
+  private String baseUrl;
+  private boolean acceptNextAlert = true;
+  private StringBuffer verificationErrors = new StringBuffer();
+
+  @Before
+  public void setUp() throws Exception {
+    driver = new FirefoxDriver();
+    baseUrl = "https://atlasdau-upg-stage1.usae.bah.com/";
+    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+  }
+
+  @Test
+  public void test59ScheduledTask() throws Exception {
+    driver.get(baseUrl + "/html/desktop/SystemAdministratorDesktop.jsp");
+    driver.findElement(By.xpath("(.//*[@class='aMenu1'][contains(text(),'Scheduled Task')])")).click();
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("ACQ");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("CLI");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("CLR");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("CLC");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("BCF");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("All");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("TST");
+    new Select(driver.findElement(By.name("courseInfo"))).selectByVisibleText("TST101 Introduction to Acquisition Workforce Test and Evaluation");
+    new Select(driver.findElement(By.name("courseInfo"))).selectByVisibleText("TST210012 CMQ210012 by RP");
+    new Select(driver.findElement(By.name("courseInfo"))).selectByVisibleText("TST101 Introduction to Acquisition Workforce Test and Evaluation");
+    driver.findElement(By.name("enableDisable")).click();
+    // ERROR: Caught exception [Error: Dom locators are not implemented yet!]
+    driver.findElement(By.name("enableDisable")).click();
+    // ERROR: Caught exception [Error: Dom locators are not implemented yet!]
+    driver.findElement(By.id("id_10")).clear();
+    driver.findElement(By.id("id_10")).sendKeys("25");
+    driver.findElement(By.id("id_10")).clear();
+    driver.findElement(By.id("id_10")).sendKeys("24");
+    driver.findElement(By.xpath("(//a[contains(text(),'[Run  Process Manually]')])[55]")).click();
+    driver.findElement(By.name("submit")).click();
+    // ERROR: Caught exception [Error: unknown strategy [class] for locator [class=result]]
+    driver.findElement(By.name("submit")).click();
+    driver.get(baseUrl + "/html/desktop/SystemAdministratorDesktop.jsp");
+  }
+
+  @After
+  public void tearDown() throws Exception {
+    driver.quit();
+    String verificationErrorString = verificationErrors.toString();
+    if (!"".equals(verificationErrorString)) {
+      fail(verificationErrorString);
+    }
+  }
+
+  private boolean isElementPresent(By by) {
+    try {
+      driver.findElement(by);
+      return true;
+    } catch (NoSuchElementException e) {
+      return false;
+    }
+  }
+
+  private boolean isAlertPresent() {
+    try {
+      driver.switchTo().alert();
+      return true;
+    } catch (NoAlertPresentException e) {
+      return false;
+    }
+  }
+
+  private String closeAlertAndGetItsText() {
+    try {
+      Alert alert = driver.switchTo().alert();
+      String alertText = alert.getText();
+      if (acceptNextAlert) {
+        alert.accept();
+      } else {
+        alert.dismiss();
+      }
+      return alertText;
+    } finally {
+      acceptNextAlert = true;
+    }
+  }
+}

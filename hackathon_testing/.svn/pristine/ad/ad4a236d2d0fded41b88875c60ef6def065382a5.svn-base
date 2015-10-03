@@ -1,0 +1,133 @@
+package atlasGroup.atlasID.tests;
+
+import org.testng.annotations.*;
+
+import atlasGroup.atlasID.helperFunctions.BrowserInfo;
+import atlasGroup.atlasID.helperFunctions.SelectDriver;
+import atlasGroup.atlasID.helperFunctions.Login_0;
+
+import java.util.List;
+import org.junit.Assert;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.Select;
+
+import org.testng.Reporter;
+
+public class TestEngineManagement_95_test {
+  private WebDriver driver;
+  private String baseUrl;
+  
+  @DataProvider
+  public Object[][] dp() {
+      return new Object[][] { 
+    	  { new BrowserInfo("Chrome", "ANY") },
+    	  { new BrowserInfo("Firefox", "ANY") },
+    	  { new BrowserInfo("internet explorer", "9") },
+    	  { new BrowserInfo("internet explorer", "10") },
+    	  { new BrowserInfo("internet explorer", "11") }
+      };
+  }
+  
+  @Test(dataProvider = "dp")
+  public void TestEngineManagement_95(BrowserInfo browserInfo) throws Exception {
+	SelectDriver selector = new SelectDriver();
+	driver = selector.getDriver(browserInfo.getPlatformName(), browserInfo.getBrowserName(), browserInfo.getVersionNumber());
+	baseUrl = browserInfo.getBaseURL();
+	Login_0 login = new Login_0();
+	login.testLogin0(driver);
+	Thread.sleep(2000);  
+	
+	Reporter.log("- Started TestEngineManagement_95 on " + browserInfo.getBrowserShorthand() + "<br>");   
+    
+	driver.findElement(By.linkText("Test Engine Management")).click();
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("CLB");
+    driver.navigate().refresh();
+    driver.findElement(By.cssSelector("option[value=\"CLB\"]")).click();
+    new Select(driver.findElement(By.name("course_info"))).selectByVisibleText("CLB001 Business Management Modernization Program");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("MAN");
+    driver.findElement(By.cssSelector("option[value=\"MAN\"]")).click();
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("TST");
+    driver.findElement(By.cssSelector("option[value=\"TST\"]")).click();
+    new Select(driver.findElement(By.name("course_info"))).selectByVisibleText("TST001W Wen's 404");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("TST");
+    
+    Reporter.log("- Changed between different prefixes and courses <br>");
+    
+    new Select(driver.findElement(By.name("course_info"))).selectByVisibleText("TST101ATaaS TST 101 ATaaS");
+    driver.findElement(By.linkText("TST101ATaaS TST 101 ATaaS - Version 2 Active")).click();
+    driver.findElement(By.linkText("Add a TLO")).click();
+    new Select(driver.findElement(By.name("lesson_id"))).selectByVisibleText("Introduction");
+    driver.findElement(By.name("title")).clear();
+    driver.findElement(By.name("title")).sendKeys("Test TLO");
+    driver.findElement(By.name("submit1")).click();
+    Reporter.log("1");
+    Reporter.log("- Added a TLO inside TST101ATaaS TST 101 ATaaS <br>");  
+    driver.findElement(By.linkText("Add a ELO")).click();
+    try{
+    	driver.findElement(By.name("tlo_id")).sendKeys("TLO 1--Test TLO");
+    } catch (Exception e){ 
+    	driver.findElement(By.name("tlo_id")).sendKeys("TLO 1--Test TLO");
+    	new Select(driver.findElement(By.name("tlo_id"))).selectByVisibleText("TLO 1--Test TLO");
+    }
+    driver.findElement(By.name("title")).clear();
+    driver.findElement(By.name("title")).sendKeys("Test ELO");
+    new Select(driver.findElement(By.name("urladd"))).selectByVisibleText("Introduction");
+    driver.findElement(By.name("submit1")).click();
+    
+    Reporter.log("- Added a ELO inside TST101ATaaS's TLO <br>");
+    
+    driver.findElement(By.linkText("Add a QUESTION")).click(); 
+    try{
+        driver.findElement(By.name("elo_id")).sendKeys("ELO 1--Test ELO");
+    } catch (Exception f){ 
+    	driver.findElement(By.name("elo_id")).sendKeys("ELO 1--Test ELO");
+        driver.findElement(By.name("elo_id")).sendKeys("ELO 1--Test ELO");
+    }
+    new Select(driver.findElement(By.name("Question_type"))).selectByVisibleText("True - False");
+    driver.findElement(By.name("submit2")).click();
+    driver.findElement(By.name("Question")).clear();
+    driver.findElement(By.name("Question")).sendKeys("You had a good day.");
+    
+    Reporter.log("- Added a true-false question inside TST101ATaaS's ELO <br>");
+    
+    driver.findElement(By.cssSelector("input.orangeDefaultSize")).click();
+    driver.findElement(By.linkText("Test Hierarchy")).click();
+    driver.findElement(By.linkText("You had a good day.")).click();
+    driver.findElement(By.xpath("//input[@value='Delete']")).click();
+    
+    Reporter.log("- Deleted the true-false question inside TST101ATaaS's ELO <br>");
+
+    driver.findElement(By.xpath("/html/body/form/table/tbody/tr[2]/td/input[2]")).click();
+    driver.findElement(By.linkText("Test Hierarchy")).click();
+    driver.findElement(By.linkText("1--Test ELO")).click();
+    driver.findElement(By.name("submit3")).click();
+    List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'There are no Question')]"));
+    Assert.assertTrue("There are no Question", list.size() > 0);
+    
+    Reporter.log("- Deleted TST101ATaaS's ELO <br>");
+    
+    driver.findElement(By.name("submit2")).click();
+    driver.findElement(By.linkText("1--Test TLO")).click();
+    driver.findElement(By.name("submit3")).click();
+    driver.findElement(By.name("submit2")).click();
+    list = driver.findElements(By.xpath("//*[contains(text(),'There are no ELO')]"));
+    Assert.assertTrue("There are no ELO.", list.size() > 0);
+    driver.findElement(By.name("submit2")).click();
+    
+    Reporter.log("- Clicked to delete TST101ATaaS's TLO <br>");
+    
+    list = driver.findElements(By.xpath("//*[contains(text(),'1--Test TLO')]"));
+    Assert.assertFalse("1--Test TLO", list.size() > 0);
+    
+    Reporter.log("- Asserted the deletion of TST101ATaaS's TLO 1--Test TLO <br>");
+    
+    Reporter.log("- [SUCCESS] Deleted the true-false question inside TST101ATaaS's ELO <br>");
+
+  }
+  
+  @AfterMethod
+  public void tearDown() throws Exception {
+    driver.quit();
+  }
+
+}

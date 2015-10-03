@@ -1,0 +1,115 @@
+package com.example.tests;
+
+import java.util.regex.Pattern;
+import java.util.concurrent.TimeUnit;
+import org.junit.*;
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+import org.openqa.selenium.*;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class 23CourseWizardShort {
+  private WebDriver driver;
+  private String baseUrl;
+  private boolean acceptNextAlert = true;
+  private StringBuffer verificationErrors = new StringBuffer();
+
+  @Before
+  public void setUp() throws Exception {
+    driver = new FirefoxDriver();
+    baseUrl = "https://atlasdau-upg-stage1.usae.bah.com/";
+    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+  }
+
+  @Test
+  public void test23CourseWizardShort() throws Exception {
+    driver.get(baseUrl + "/html/desktop/SystemAdministratorDesktop.jsp");
+    driver.findElement(By.xpath("(.//*[@class='aMenu2'][contains(text(),'Course Wizard (Short Form)')])")).click();
+    new Select(driver.findElement(By.name("course_type_id"))).selectByVisibleText("Page Turner with Confirmation");
+    new Select(driver.findElement(By.name("course_type_id"))).selectByVisibleText("Blackboard");
+    new Select(driver.findElement(By.name("course_type_id"))).selectByVisibleText("OSS");
+    new Select(driver.findElement(By.name("course_type_id"))).selectByVisibleText("SCORM 1.2");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("CLE");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("ERR");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("FE");
+    new Select(driver.findElement(By.name("prefix"))).selectByVisibleText("ACQ");
+    driver.findElement(By.name("name")).clear();
+    driver.findElement(By.name("name")).sendKeys("Version test 2");
+    driver.findElement(By.name("description")).clear();
+    driver.findElement(By.name("description")).sendKeys("test2");
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | name=modes | label=Onsite]]
+    new Select(driver.findElement(By.name("CourseManager"))).selectByVisibleText("Admin, Roman");
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | name=CourseAdministrator | label=1111, First name]]
+    // ERROR: Caught exception [ERROR: Unsupported command [removeSelection | name=CourseAdministrator | label=1111, First name]]
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | name=CourseAdministrator | label=Admin, Mike]]
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | name=CourseReviewers | label=Last name 15570, First name]]
+    // ERROR: Caught exception [ERROR: Unsupported command [removeSelection | name=CourseReviewers | label=Last name 15570, First name]]
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | name=CourseReviewers | label=Last name 165, First name]]
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | name=schools | label=705 - ICAF- 705 ICAF, Washington, DC]]
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | name=schools | label=568 - None- No School Name]]
+    // ERROR: Caught exception [ERROR: Unsupported command [removeSelection | name=schools | label=705 - ICAF- 705 ICAF, Washington, DC]]
+    // ERROR: Caught exception [ERROR: Unsupported command [removeSelection | name=schools | label=568 - None- No School Name]]
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | name=schools | label=904 - DAUNorfolk- 904 Web, Norfolk, VA]]
+    // ERROR: Caught exception [ERROR: Unsupported command [removeSelection | name=prerequisiteCourses | label=NO PREREQUISITE]]
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | name=prerequisiteCourses | label=ACQ001 - ACQ 101 Course]]
+    new Select(driver.findElement(By.name("survey"))).selectByVisibleText("CL_Self_Paced");
+    driver.findElement(By.name("ceu")).clear();
+    driver.findElement(By.name("ceu")).sendKeys("4");
+    new Select(driver.findElement(By.id("day-fieldmonthdayyear"))).selectByVisibleText("19");
+    // ERROR: Caught exception [ERROR: Unsupported command [addSelection | name=pds | label=BDQ - DAU CON101 FUNDAMENTALS OF CONTRACTING]]
+    driver.findElement(By.name("Submit")).click();
+    driver.findElement(By.id("myUrl")).clear();
+    driver.findElement(By.id("myUrl")).sendKeys("test.html");
+    driver.findElement(By.name("Submit")).click();
+    driver.findElement(By.name("submit")).click();
+    driver.findElement(By.name("zip")).clear();
+    driver.findElement(By.name("zip")).sendKeys("/Users/nathanwaters/Documents/bddnotes.txt");
+    driver.findElement(By.name("submit")).click();
+    driver.findElement(By.name("zip")).clear();
+    driver.findElement(By.name("zip")).sendKeys("/Users/nathanwaters/Downloads/GitHub for Mac 208.zip");
+    driver.findElement(By.name("submit")).click();
+  }
+
+  @After
+  public void tearDown() throws Exception {
+    driver.quit();
+    String verificationErrorString = verificationErrors.toString();
+    if (!"".equals(verificationErrorString)) {
+      fail(verificationErrorString);
+    }
+  }
+
+  private boolean isElementPresent(By by) {
+    try {
+      driver.findElement(by);
+      return true;
+    } catch (NoSuchElementException e) {
+      return false;
+    }
+  }
+
+  private boolean isAlertPresent() {
+    try {
+      driver.switchTo().alert();
+      return true;
+    } catch (NoAlertPresentException e) {
+      return false;
+    }
+  }
+
+  private String closeAlertAndGetItsText() {
+    try {
+      Alert alert = driver.switchTo().alert();
+      String alertText = alert.getText();
+      if (acceptNextAlert) {
+        alert.accept();
+      } else {
+        alert.dismiss();
+      }
+      return alertText;
+    } finally {
+      acceptNextAlert = true;
+    }
+  }
+}

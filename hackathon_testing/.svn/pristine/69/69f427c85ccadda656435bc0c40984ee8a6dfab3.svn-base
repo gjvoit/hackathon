@@ -1,0 +1,97 @@
+package com.example.tests;
+
+import java.util.regex.Pattern;
+import java.util.concurrent.TimeUnit;
+import org.junit.*;
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+import org.openqa.selenium.*;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class 43AddSurvey {
+  private WebDriver driver;
+  private String baseUrl;
+  private boolean acceptNextAlert = true;
+  private StringBuffer verificationErrors = new StringBuffer();
+
+  @Before
+  public void setUp() throws Exception {
+    driver = new FirefoxDriver();
+    baseUrl = "https://atlasdau-upg-stage1.usae.bah.com/";
+    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+  }
+
+  @Test
+  public void test43AddSurvey() throws Exception {
+    driver.get(baseUrl + "/html/desktop/SystemAdministratorDesktop.jsp");
+    driver.findElement(By.xpath("(.//*[@class='aMenu1'][contains(text(),'Add Survey')])")).click();
+    driver.findElement(By.name("name")).clear();
+    driver.findElement(By.name("name")).sendKeys("Here's a new test survey");
+    driver.findElement(By.name("header")).clear();
+    driver.findElement(By.name("header")).sendKeys("Fake header");
+    driver.findElement(By.name("footer")).clear();
+    driver.findElement(By.name("footer")).sendKeys("Fake footer");
+    driver.findElement(By.name("description")).clear();
+    driver.findElement(By.name("description")).sendKeys("Fake description");
+    driver.findElement(By.name("sumbit")).click();
+    driver.findElement(By.xpath("(//input[@type='button'])[96]")).click();
+    driver.findElement(By.xpath("(//input[@type='button'])[200]")).click();
+    driver.findElement(By.name("dim_name")).clear();
+    driver.findElement(By.name("dim_name")).sendKeys("Fake Categoru");
+    driver.findElement(By.id("continue")).click();
+    driver.findElement(By.name("text")).clear();
+    driver.findElement(By.name("text")).sendKeys("Fake question");
+    driver.findElement(By.cssSelector("input[name=\"survey\"]")).click();
+    // ERROR: Caught exception [Error: Dom locators are not implemented yet!]
+    new Select(driver.findElement(By.cssSelector("select[name=\"survey\"]"))).selectByVisibleText("Here's a new test survey");
+    // ERROR: Caught exception [Error: Dom locators are not implemented yet!]
+    assertTrue(driver.findElement(By.xpath("/html/body/form/table/tbody/tr[2]/td/table/tbody/tr/td")).getText().matches("^Are you sure you want to delete this survey[\\s\\S]$"));
+    driver.findElement(By.name("submit")).click();
+    assertEquals("Survey has been successfully deleted!", driver.findElement(By.xpath("/html/body/table[5]/tbody/tr[2]/td/table/tbody/tr/td")).getText());
+    driver.findElement(By.cssSelector("input.orangeDefaultSize")).click();
+    driver.get(baseUrl + "/html/desktop/SystemAdministratorDesktop.jsp");
+  }
+
+  @After
+  public void tearDown() throws Exception {
+    driver.quit();
+    String verificationErrorString = verificationErrors.toString();
+    if (!"".equals(verificationErrorString)) {
+      fail(verificationErrorString);
+    }
+  }
+
+  private boolean isElementPresent(By by) {
+    try {
+      driver.findElement(by);
+      return true;
+    } catch (NoSuchElementException e) {
+      return false;
+    }
+  }
+
+  private boolean isAlertPresent() {
+    try {
+      driver.switchTo().alert();
+      return true;
+    } catch (NoAlertPresentException e) {
+      return false;
+    }
+  }
+
+  private String closeAlertAndGetItsText() {
+    try {
+      Alert alert = driver.switchTo().alert();
+      String alertText = alert.getText();
+      if (acceptNextAlert) {
+        alert.accept();
+      } else {
+        alert.dismiss();
+      }
+      return alertText;
+    } finally {
+      acceptNextAlert = true;
+    }
+  }
+}
