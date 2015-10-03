@@ -3,7 +3,6 @@ package hackathonGroup.hackathonID.helperFunctions;
 public class BrowserInfo {
 	private String browserName;
 	private String versionNumber;
-	private String browserShorthand;
 	
 	public BrowserInfo(String browserName, String versionNumber) {
         this.browserName = browserName;
@@ -17,7 +16,7 @@ public class BrowserInfo {
 		this.browserName = browserName;
 	}
 	public String getPlatformName() {
-		return "WINDOWS";
+		return "LINUX";
 	}
 	
 	public String getVersionNumber() {

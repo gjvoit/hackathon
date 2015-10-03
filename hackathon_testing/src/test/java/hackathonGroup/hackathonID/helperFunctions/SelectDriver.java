@@ -24,32 +24,19 @@ public class SelectDriver {
 		DesiredCapabilities caps = new DesiredCapabilities();
 		
 		
-		if(platform.equalsIgnoreCase("Windows")){
+		if(platform.equalsIgnoreCase("LINUX")){
 //			log.info("You're using platform: Windows");
 			caps.setPlatform(org.openqa.selenium.Platform.
-		  WINDOWS);
+		  LINUX);
 		}
 		if(platform.equalsIgnoreCase("MAC")){
 //			log.info("You're using platform: Mac");
 			caps.setPlatform(org.openqa.selenium.Platform.MAC);
 		}
 		if(browser.equalsIgnoreCase("Internet Explorer")){
-//			log.info("You're using browser: Internet Explorer");
 			
 			caps = DesiredCapabilities.internetExplorer();
-			
-			// this way it doesn't matter about all the security zones being at the same level
-//			caps.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,true); 
-			
-			
-			// didn't work
-//			Proxy proxy = new Proxy();
-//			proxy.setProxyType(ProxyType.MANUAL);
-//			proxy.setSslProxy("trustAllSSLCertificates");
-//			caps.setCapability(CapabilityType.PROXY, proxy);
-			
-			
-			// didn't work
+		
 			 caps.setCapability("acceptSslCerts", "true");
 			
 			// didn't work

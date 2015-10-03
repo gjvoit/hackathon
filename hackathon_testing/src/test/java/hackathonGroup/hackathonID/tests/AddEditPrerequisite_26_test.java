@@ -18,7 +18,6 @@ import hackathonGroup.hackathonID.helperFunctions.BrowserInfo;
 import hackathonGroup.hackathonID.helperFunctions.CallAfterTest;
 import hackathonGroup.hackathonID.helperFunctions.SelectDriver;
 import jline.internal.Log;
-import hackathonGroup.hackathonID.helperFunctions.Login_0;
 
 public class AddEditPrerequisite_26_test {
   private WebDriver driver;
@@ -40,8 +39,6 @@ public class AddEditPrerequisite_26_test {
 	SelectDriver selector = new SelectDriver();
 	driver = selector.getDriver(browserInfo.getPlatformName(), browserInfo.getBrowserName(), browserInfo.getVersionNumber());
 	baseUrl = browserInfo.getBaseURL();
-	Login_0 login = new Login_0();
-	login.testLogin0(driver);
 	Thread.sleep(2000);
 	Reporter.log("- Started AddEditPrerequisite_26 on " + browserInfo.getBrowserShorthand() + "<br>");
 	browserName = browserInfo.getBrowserShorthand();
