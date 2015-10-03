@@ -48,18 +48,14 @@ public class SelectDriver {
 			caps = DesiredCapabilities.firefox();
 		}
 		if(browser.equalsIgnoreCase("Chrome")){
-//			log.info("You're using browser: Chrome");
 			caps = DesiredCapabilities.chrome();
 			caps.setCapability("chrome.switches", Arrays.asList("--ignore-certificate-errors"));
 
 		}
-		//Version
 		caps.setVersion(version);
-//		log.info("You're using version: " + version);
-		
-		//Pointing to automated Selenium grid on the test server
-
-		driver = new RemoteWebDriver(new URL("http://54.152.134.184:4444/wd/hub"), caps);
+		caps.setCapability("binary", "/usr/bin/firefox");
+//		driver = new WebDriver(new URL("http://54.152.134.184:4444/wd/hub"), caps);
+		driver = new FirefoxDriver();
 		
 		return driver;
 	}
