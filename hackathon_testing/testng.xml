@@ -4,8 +4,10 @@
 
 	<test name="Ubuntu+ALL">
 		<classes>
-			<class name="hackathonGroup.hackathonID.tests.Activate_Deactivate_65_test" />
+			<class name="hackathonGroup.hackathonID.tests.NexiumContributing" />
+			<class name="hackathonGroup.hackathonID.tests.Synthoid" />
 		</classes>
 	</test>
 
 </suite> <!-- Suite -->
+

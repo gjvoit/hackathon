@@ -43,32 +43,7 @@ public class AddEditPrerequisite_26_test {
 	Reporter.log("- Started AddEditPrerequisite_26 on " + browserInfo.getBrowserShorthand() + "<br>");
 	browserName = browserInfo.getBrowserShorthand();
 
-    driver.get(baseUrl + "html/desktop/SystemAdministratorDesktop.jsp");
-    driver.get(baseUrl + "html/desktop/courseAdministration/SelectCourse.jsp?a=ap");
-    
-    driver.findElement(By.name("key")).sendKeys("ACQ000 clg 004");
-    Reporter.log("- Selected course ACQ 000 clg 004 <br>");
-    
-    driver.findElement(By.name("prerequisites")).sendKeys("ACQ001 ACQ 101 Course");
-    Reporter.log("- Selected course ACQ001 ACQ 101 Course as a prerequisite <br>");
-    
-    driver.findElement(By.id("add prerequisite")).click();
-    driver.findElement(By.id("add prerequisites to course")).click();
-    Reporter.log("- Clicked Add Prerequisite <br>");
-    
-    Assert.assertTrue(driver.findElement(By.xpath("html/body/table[5]/tbody/tr[3]/td")).getText().contains("The following is the  updated prerequisite list"));
-    Reporter.log("- Prerequisite successfully added <br>");
-    
-    driver.findElement(By.id("go back")).click();
-    try{
-    	driver.findElement(By.xpath("/html/body/table[5]/tbody/tr[2]/td/ul/li/a")).click();
-    } catch(Exception e){
-    	driver.findElement(By.linkText("[Remove Prerequisite]")).click();
-    }
-    Reporter.log("- Clicked Remove Prerequisite link <br>");
-    
-    driver.findElement(By.id("remove prerequisites from course")).click();
-    Assert.assertTrue(driver.findElement(By.xpath("html/body/table[5]/tbody/tr[3]/td")).getText().contains("No prerequisites are associated with ACQ000"));
+    driver.get(baseUrl + "/");
     Reporter.log("- Prerequisite successfully removed <br>");
     
     Reporter.log("- [SUCCESS] completed AddEditPrerequisite_65!");
